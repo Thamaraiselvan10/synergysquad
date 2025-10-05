@@ -1,0 +1,47 @@
+---
+// src/pages/vision-mission.astro
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Vision & Mission - Synergy Squad">
+    <main>
+        <div class="content-section">
+            <h2>Our Vision</h2>
+            <p>
+                To be the leading student-run coding club that empowers every student at the Knowledge Institute of Technology to excel in competitive programming and secure careers at top-tier technology companies.
+            </p>
+        </div>
+
+        <div class="content-section">
+            <h2>Our Mission</h2>
+            <p>
+                Our mission is to foster a vibrant and inclusive coding culture through consistent, high-quality weekly challenges and company-specific training. We aim to bridge the gap between academic knowledge and industry expectations, equipping our members with the practical skills and confidence needed to succeed in real-world technical interviews and beyond.
+            </p>
+        </div>
+    </main>
+</Layout>
+
+<style>
+    main {
+		margin: auto;
+		padding: 4rem 1.5rem;
+		max-width: 70ch;
+	}
+
+	.content-section {
+		margin-bottom: 3rem;
+	}
+
+	h2 {
+		font-size: 2.5rem;
+		font-weight: 700;
+		margin-bottom: 1rem;
+		color: var(--primary-color);
+	}
+
+    p {
+        font-size: 1.125rem;
+        line-height: 1.8; /* Increased line-height for readability */
+        color: #334155;
+    }
+</style>

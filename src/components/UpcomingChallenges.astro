@@ -1,0 +1,87 @@
+---
+// src/components/UpcomingChallenges.astro
+const upcomingChallenges = [
+    {
+        title: 'DSA Weekly Challenge #5',
+        description: 'This week, we tackle advanced tree traversal algorithms. Prepare for some tricky problems!',
+        posterUrl: 'https://images.unsplash.com/photo-1592609931095-54a2168ae893?q=80&w=1740'
+    },
+    {
+        title: 'Intro to React Hooks',
+        description: 'A special workshop for beginners. Learn how to manage state in modern React applications.',
+        posterUrl: 'https://images.unsplash.com/photo-1504639725590-34d0984388bd?q=80&w=1887'
+    }
+];
+---
+<section class="upcoming-challenges">
+    <div class="container">
+        <h2 class="section-title">Upcoming Challenges</h2>
+        <div class="challenges-grid">
+            {upcomingChallenges.map(challenge => (
+                <div class="challenge-card">
+                    <div class="poster-container">
+                        <img src={challenge.posterUrl} alt={`Poster for ${challenge.title}`} class="challenge-poster" />
+                    </div>
+                    <div class="card-content">
+                        <h3>{challenge.title}</h3>
+                        <p>{challenge.description}</p>
+                    </div>
+                </div>
+            ))}
+        </div>
+    </div>
+</section>
+<style>
+    .upcoming-challenges {
+        padding: 5rem 1.5rem; /* More vertical space */
+    }
+    .container {
+        max-width: 1100px;
+        margin: auto;
+    }
+    .section-title {
+        font-size: 2.5rem;
+        font-weight: 800; /* Bolder title */
+        text-align: center;
+        margin-bottom: 3rem;
+    }
+    .challenges-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        gap: 2.5rem;
+    }
+    .challenge-card {
+        background-color: #fff;
+        border-radius: 12px;
+        border: 1px solid var(--border-color); /* Add a subtle border */
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05), 0 2px 4px -2px rgb(0 0 0 / 0.05); /* Softer shadow */
+        display: flex;
+        overflow: hidden;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .challenge-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.08), 0 4px 6px -4px rgb(0 0 0 / 0.08); /* More pronounced shadow on hover */
+    }
+    .poster-container {
+        flex: 0 0 180px;
+    }
+    .challenge-poster {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+    .card-content {
+        padding: 1.5rem;
+    }
+    .card-content h3 {
+        margin-top: 0;
+        font-size: 1.25rem;
+        font-weight: 700; /* Bolder card titles */
+    }
+    .card-content p {
+        color: var(--text-secondary); /* Use our secondary text color */
+        line-height: 1.6;
+        margin-bottom: 0;
+    }
+</style>

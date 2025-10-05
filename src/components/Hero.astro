@@ -1,0 +1,112 @@
+---
+// src/components/Hero.astro
+---
+<section class="hero">
+    <div class="hero-content">
+        <!-- The h1 is initially empty. The script below will type out the text into it. -->
+        <h1 class="title" id="hero-title"></h1>
+        
+        <!-- These elements start invisible and will fade in after the typing. -->
+        <p class="subtitle animate-on-load">
+            An exclusive, results-driven initiative for KIOT's top CSE talent. Through intensive training and mock company challenges, we have placed over 75% of our members in Tier-1 IT companies. We turn potential into proficiency.
+        </p>
+
+        <a href="/challenges" class="cta-button animate-on-load">View This Week's Challenge</a>
+    </div>
+</section>
+
+<style>
+    .hero {
+        background-image: linear-gradient(rgba(10, 20, 40, 0.75), rgba(10, 20, 40, 0.75)), url('https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=2070');
+        background-size: cover;
+        background-position: center;
+        padding: 8rem 1.5rem;
+        text-align: center;
+        color: #f8fafc; /* Use a slightly softer white */
+        display: flex; /* Helps vertically center content */
+        align-items: center;
+        min-height: 40vh;
+    }
+    .hero-content { max-width: 75ch; margin: auto; }
+
+    /* --- Title & Typing Animation Styles --- */
+    .title {
+        font-size: 3.75rem; /* Slightly larger */
+        font-weight: 800;
+        margin-bottom: 1.5rem;
+        line-height: 1.2;
+        /* THIS IS THE KEY: A text shadow makes the text readable on any background */
+        text-shadow: 0 3px 10px rgba(0, 0, 0, 0.6);
+        min-height: 140px; /* Prevents layout shift while text is typing */
+    }
+
+    /* Blinking cursor effect */
+    .title::after {
+        content: '_';
+        animation: blink 0.7s infinite;
+        font-weight: 400; /* Make the cursor thinner */
+    }
+    @keyframes blink {
+        50% { opacity: 0; }
+    }
+
+    /* --- Subtitle & Button Entrance Animation --- */
+    .animate-on-load {
+        opacity: 0; /* Start invisible */
+        animation: fadeInUp 0.8s ease-out forwards;
+        animation-delay: 3s; /* IMPORTANT: This delay waits for the typing to finish */
+    }
+    @keyframes fadeInUp {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .subtitle {
+        font-size: 1.25rem;
+        line-height: 1.7;
+        margin-bottom: 2.5rem;
+        text-shadow: 0 2px 8px rgba(0, 0, 0, 0.7);
+        animation-delay: 3.2s; /* Stagger the animation */
+    }
+    .cta-button {
+        background-color: var(--primary-color);
+        color: #fff;
+        padding: 1rem 2rem;
+        text-decoration: none;
+        font-weight: 700;
+        border-radius: 8px;
+        transition: transform 0.3s ease, background-color 0.3s ease;
+        display: inline-block;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        animation-delay: 3.4s; /* Stagger the animation */
+    }
+    .cta-button:hover {
+        background-color: var(--primary-color-hover);
+        transform: translateY(-3px);
+    }
+</style>
+
+<script>
+    // This script will run on the user's browser to create the typing effect.
+    document.addEventListener('DOMContentLoaded', () => {
+        const textToType = "Bridge the Gap Between Code and Career";
+        const titleElement = document.getElementById('hero-title');
+        let i = 0;
+
+        function typeWriter() {
+            if (i < textToType.length) {
+                titleElement.innerHTML += textToType.charAt(i);
+                i++;
+                // Call this function again after a short delay
+                setTimeout(typeWriter, 80); // Adjust speed here (milliseconds)
+            } else {
+                // When typing is done, remove the cursor's animation class
+                titleElement.style.borderRight = 'none';
+                titleElement.classList.add('typing-done');
+            }
+        }
+        
+        // Start the animation
+        typeWriter();
+    });
+</script>
