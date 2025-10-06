@@ -1,117 +1,139 @@
 ---
 // src/components/UpcomingChallenges.astro
 
-// IMPORTANT: We've added a new 'status' property to our data.
-// It can be either 'current' or 'upcoming'.
-const upcomingChallenges = [
+// Updated data with the three statuses: 'current', 'upcoming', and 'completed'
+const challenges = [
     {
         title: 'DSA Weekly Challenge #5',
         description: 'This week, we tackle advanced tree traversal algorithms. Prepare for some tricky problems!',
         posterUrl: 'https://images.unsplash.com/photo-1592609931095-54a2168ae893?q=80&w=1740',
-        status: 'current' // This is the current challenge
+        status: 'current'
     },
     {
         title: 'Intro to React Hooks Workshop',
         description: 'A special workshop for beginners. Learn how to manage state in modern React applications.',
         posterUrl: 'https://images.unsplash.com/photo-1504639725590-34d0984388bd?q=80&w=1887',
-        status: 'upcoming' // This is an upcoming challenge
+        status: 'upcoming'
+    },
+    {
+        title: 'Mock Wipro NLTH Challenge',
+        description: 'Test your skills in a simulated environment that mirrors the actual Wipro National Level Talent Hunt.',
+        posterUrl: 'https://images.unsplash.com/photo-1550063873-ab792950096b?q=80&w=1887',
+        status: 'upcoming'
+    },
+    {
+        title: 'Week 1 - Pattern Day',
+        description: 'The foundational challenge that kicked off our weekly series, focusing on complex pattern printing.',
+        posterUrl: 'https://images.unsplash.com/photo-1526498460520-4c246339dcc4?q=80&w=2070',
+        status: 'completed'
     }
 ];
 ---
+<link rel="stylesheet" href="node_modules/@splidejs/splide/dist/css/splide.min.css">
 
 <section class="upcoming-challenges">
     <div class="container">
         <h2 class="section-title">Weekly Challenges</h2>
-        <div class="challenges-grid">
-            {upcomingChallenges.map(challenge => (
-                <div class="challenge-card">
-                    <div class="poster-container">
-                        <img src={challenge.posterUrl} alt={`Poster for ${challenge.title}`} class="challenge-poster" />
-                    </div>
-                    <div class="card-content">
-                        <div class="card-text">
-                            <h3>{challenge.title}</h3>
-                            <p>{challenge.description}</p>
-                        </div>
-                        
-                        <!-- START: New Status Tag -->
-                        <!-- We add a class based on the challenge's status -->
-                        <div class:list={['status-tag', challenge.status]}>
-                            <span class="status-dot"></span>
-                            <span class="status-text">
-                                {challenge.status === 'current' ? 'CURRENT CHALLENGE' : 'UPCOMING'}
-                            </span>
-                        </div>
-                        <!-- END: New Status Tag -->
-                    </div>
-                </div>
-            ))}
+        
+        <div id="challenges-slider" class="splide">
+            <div class="splide__track">
+                <ul class="splide__list">
+                    {challenges.map(challenge => (
+                        <li class="splide__slide">
+                            <div class="challenge-card">
+                                <div class="poster-container">
+                                    <img src={challenge.posterUrl} alt={`Poster for ${challenge.title}`} class="challenge-poster" />
+                                </div>
+                                <div class="card-content">
+                                    <div class="card-text">
+                                        <h3>{challenge.title}</h3>
+                                        <p>{challenge.description}</p>
+                                    </div>
+                                    
+                                    <div class:list={['status-tag', challenge.status]}>
+                                        <span class="status-dot"></span>
+                                        <span class="status-text">
+                                            {challenge.status.toUpperCase()} CHALLENGE
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    ))}
+                </ul>
+            </div>
         </div>
     </div>
 </section>
 
 <style>
-    .upcoming-challenges { padding: 5rem 1.5rem; }
-    .container { max-width: 1100px; margin: auto; }
+    .upcoming-challenges { padding: 5rem 1.5rem; overflow: hidden; }
+    .container { max-width: 1200px; margin: auto; }
     .section-title { font-size: 2.5rem; font-weight: 800; text-align: center; margin-bottom: 3rem; }
-    .challenges-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2.5rem; }
-    .challenge-card {
-        background-color: #fff;
-        border-radius: 12px;
-        border: 1px solid var(--border-color);
-        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05), 0 2px 4px -2px rgb(0 0 0 / 0.05);
-        display: flex;
-        overflow: hidden;
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-    .challenge-card:hover { transform: translateY(-5px); box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.08), 0 4px 6px -4px rgb(0 0 0 / 0.08); }
-    .poster-container { flex: 0 0 180px; }
+    
+    .splide__slide { padding: 0.5rem; }
+    .challenge-card { background-color: #fff; border-radius: 12px; border: 1px solid var(--border-color); box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05), 0 2px 4px -2px rgb(0 0 0 / 0.05); display: flex; overflow: hidden; height: 100%; }
+    .poster-container { flex: 0 0 200px; }
     .challenge-poster { width: 100%; height: 100%; object-fit: cover; }
-
-    /* --- START: New and Updated Card Content Styles --- */
-    .card-content {
-        padding: 1.5rem;
-        display: flex; /* Use flexbox to position the tag */
-        flex-direction: column; /* Stack text and tag vertically */
-        justify-content: space-between; /* Pushes text to top, tag to bottom */
-    }
+    .card-content { padding: 1.5rem; display: flex; flex-direction: column; justify-content: space-between; }
     .card-content h3 { margin-top: 0; font-size: 1.25rem; font-weight: 700; }
     .card-content p { color: var(--text-secondary); line-height: 1.6; margin-bottom: 0; }
 
-    /* --- Status Tag Styling --- */
-    .status-tag {
-        display: flex;
-        align-items: center;
-        gap: 0.5rem; /* Space between dot and text */
-        margin-top: 1rem; /* Space above the tag */
-    }
-    .status-dot {
-        width: 12px;
-        height: 12px;
-        border-radius: 50%;
-    }
-    .status-text {
-        font-size: 0.75rem;
-        font-weight: 700;
-        letter-spacing: 0.05em;
-    }
+    /* --- Updated Status Tag Styles --- */
+    .status-tag { display: flex; align-items: center; gap: 0.5rem; margin-top: 1rem; }
+    .status-dot { width: 10px; height: 10px; border-radius: 50%; }
+    .status-text { font-size: 0.8rem; font-weight: 700; letter-spacing: 0.05em; }
 
-    /* --- Conditional Styles Based on Status --- */
-    /* Styles for the "Current" tag */
+    /* 1. CURRENT CHALLENGE (Green Glow) */
     .status-tag.current .status-dot {
         background-color: #10b981; /* Green */
+        box-shadow: 0 0 8px #10b981, 0 0 12px #10b981;
+        animation: glow-animation 2s infinite ease-in-out;
     }
-    .status-tag.current .status-text {
-        color: #059669; /* Darker Green */
-    }
+    .status-tag.current .status-text { color: #059669; }
 
-    /* Styles for the "Upcoming" tag */
+    /* 2. UPCOMING CHALLENGE (Amber/Yellow Glow) */
     .status-tag.upcoming .status-dot {
-        background-color: transparent;
-        border: 2px solid #ef4444; /* Red */
+        background-color: #f59e0b; /* Amber */
+        box-shadow: 0 0 8px #f59e0b, 0 0 12px #f59e0b;
+        animation: glow-animation 2s infinite ease-in-out;
     }
-    .status-tag.upcoming .status-text {
-        color: #ef4444; /* Red */
+    .status-tag.upcoming .status-text { color: #b45309; }
+
+    /* 3. COMPLETED CHALLENGE (Gray, No Glow) */
+    .status-tag.completed .status-dot {
+        background-color: #9ca3af; /* Gray */
     }
-    /* --- END: New and Updated Card Content Styles --- */
+    .status-tag.completed .status-text { color: #6b7280; }
+
+    /* Shared glowing animation */
+    @keyframes glow-animation {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0.5; }
+    }
+    
+    /* Carousel Styles (unchanged) */
+    .splide__arrow { background-color: var(--primary-color); }
+    .splide__arrow svg { fill: white; }
+    .splide__pagination__page.is-active { background-color: var(--primary-color); }
 </style>
+
+<script>
+    import Splide from '@splidejs/splide';
+
+    document.addEventListener('DOMContentLoaded', () => {
+        const splide = new Splide('#challenges-slider', {
+            type: 'loop',
+            perPage: 2,
+            perMove: 1,
+            gap: '1rem',
+            pagination: true,
+            arrows: true,
+            breakpoints: {
+                1024: { perPage: 2, },
+                768: { perPage: 1, },
+            },
+        });
+        splide.mount();
+    });
+</script>

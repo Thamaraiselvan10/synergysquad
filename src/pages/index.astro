@@ -3,7 +3,10 @@
 import Layout from '../layouts/Layout.astro';
 import Hero from '../components/Hero.astro';
 import UpcomingChallenges from '../components/UpcomingChallenges.astro';
-import Achievements from '../components/Achievements.astro'; // <-- We added this new import
+import Achievements from '../components/Achievements.astro';
+import AchievementsWall from '../components/AchievementsWall.astro';
+import Testimonials from '../components/Testimonials.astro';
+import Leaderboard from '../components/Leaderboard.astro'; // <-- We added this new import
 ---
 
 <Layout title="Synergy Squad - KIOT Coding Club">
@@ -11,6 +14,9 @@ import Achievements from '../components/Achievements.astro'; // <-- We added thi
 	
 	<main>
 		<UpcomingChallenges />
-		<Achievements /> <!-- <-- We placed the new component here -->
+		<Achievements />
+        <AchievementsWall />
+        <Testimonials />
+        <Leaderboard /> <!-- <-- We placed the new component here -->
 	</main>
 </Layout>
