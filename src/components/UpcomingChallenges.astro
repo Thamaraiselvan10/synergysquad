@@ -1,21 +1,27 @@
 ---
 // src/components/UpcomingChallenges.astro
+
+// IMPORTANT: We've added a new 'status' property to our data.
+// It can be either 'current' or 'upcoming'.
 const upcomingChallenges = [
     {
         title: 'DSA Weekly Challenge #5',
         description: 'This week, we tackle advanced tree traversal algorithms. Prepare for some tricky problems!',
-        posterUrl: 'https://images.unsplash.com/photo-1592609931095-54a2168ae893?q=80&w=1740'
+        posterUrl: 'https://images.unsplash.com/photo-1592609931095-54a2168ae893?q=80&w=1740',
+        status: 'current' // This is the current challenge
     },
     {
-        title: 'Intro to React Hooks',
+        title: 'Intro to React Hooks Workshop',
         description: 'A special workshop for beginners. Learn how to manage state in modern React applications.',
-        posterUrl: 'https://images.unsplash.com/photo-1504639725590-34d0984388bd?q=80&w=1887'
+        posterUrl: 'https://images.unsplash.com/photo-1504639725590-34d0984388bd?q=80&w=1887',
+        status: 'upcoming' // This is an upcoming challenge
     }
 ];
 ---
+
 <section class="upcoming-challenges">
     <div class="container">
-        <h2 class="section-title">Upcoming Challenges</h2>
+        <h2 class="section-title">Weekly Challenges</h2>
         <div class="challenges-grid">
             {upcomingChallenges.map(challenge => (
                 <div class="challenge-card">
@@ -23,65 +29,89 @@ const upcomingChallenges = [
                         <img src={challenge.posterUrl} alt={`Poster for ${challenge.title}`} class="challenge-poster" />
                     </div>
                     <div class="card-content">
-                        <h3>{challenge.title}</h3>
-                        <p>{challenge.description}</p>
+                        <div class="card-text">
+                            <h3>{challenge.title}</h3>
+                            <p>{challenge.description}</p>
+                        </div>
+                        
+                        <!-- START: New Status Tag -->
+                        <!-- We add a class based on the challenge's status -->
+                        <div class:list={['status-tag', challenge.status]}>
+                            <span class="status-dot"></span>
+                            <span class="status-text">
+                                {challenge.status === 'current' ? 'CURRENT CHALLENGE' : 'UPCOMING'}
+                            </span>
+                        </div>
+                        <!-- END: New Status Tag -->
                     </div>
                 </div>
             ))}
         </div>
     </div>
 </section>
+
 <style>
-    .upcoming-challenges {
-        padding: 5rem 1.5rem; /* More vertical space */
-    }
-    .container {
-        max-width: 1100px;
-        margin: auto;
-    }
-    .section-title {
-        font-size: 2.5rem;
-        font-weight: 800; /* Bolder title */
-        text-align: center;
-        margin-bottom: 3rem;
-    }
-    .challenges-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-        gap: 2.5rem;
-    }
+    .upcoming-challenges { padding: 5rem 1.5rem; }
+    .container { max-width: 1100px; margin: auto; }
+    .section-title { font-size: 2.5rem; font-weight: 800; text-align: center; margin-bottom: 3rem; }
+    .challenges-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2.5rem; }
     .challenge-card {
         background-color: #fff;
         border-radius: 12px;
-        border: 1px solid var(--border-color); /* Add a subtle border */
-        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05), 0 2px 4px -2px rgb(0 0 0 / 0.05); /* Softer shadow */
+        border: 1px solid var(--border-color);
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05), 0 2px 4px -2px rgb(0 0 0 / 0.05);
         display: flex;
         overflow: hidden;
         transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
-    .challenge-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.08), 0 4px 6px -4px rgb(0 0 0 / 0.08); /* More pronounced shadow on hover */
-    }
-    .poster-container {
-        flex: 0 0 180px;
-    }
-    .challenge-poster {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-    }
+    .challenge-card:hover { transform: translateY(-5px); box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.08), 0 4px 6px -4px rgb(0 0 0 / 0.08); }
+    .poster-container { flex: 0 0 180px; }
+    .challenge-poster { width: 100%; height: 100%; object-fit: cover; }
+
+    /* --- START: New and Updated Card Content Styles --- */
     .card-content {
         padding: 1.5rem;
+        display: flex; /* Use flexbox to position the tag */
+        flex-direction: column; /* Stack text and tag vertically */
+        justify-content: space-between; /* Pushes text to top, tag to bottom */
     }
-    .card-content h3 {
-        margin-top: 0;
-        font-size: 1.25rem;
-        font-weight: 700; /* Bolder card titles */
+    .card-content h3 { margin-top: 0; font-size: 1.25rem; font-weight: 700; }
+    .card-content p { color: var(--text-secondary); line-height: 1.6; margin-bottom: 0; }
+
+    /* --- Status Tag Styling --- */
+    .status-tag {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem; /* Space between dot and text */
+        margin-top: 1rem; /* Space above the tag */
     }
-    .card-content p {
-        color: var(--text-secondary); /* Use our secondary text color */
-        line-height: 1.6;
-        margin-bottom: 0;
+    .status-dot {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
     }
+    .status-text {
+        font-size: 0.75rem;
+        font-weight: 700;
+        letter-spacing: 0.05em;
+    }
+
+    /* --- Conditional Styles Based on Status --- */
+    /* Styles for the "Current" tag */
+    .status-tag.current .status-dot {
+        background-color: #10b981; /* Green */
+    }
+    .status-tag.current .status-text {
+        color: #059669; /* Darker Green */
+    }
+
+    /* Styles for the "Upcoming" tag */
+    .status-tag.upcoming .status-dot {
+        background-color: transparent;
+        border: 2px solid #ef4444; /* Red */
+    }
+    .status-tag.upcoming .status-text {
+        color: #ef4444; /* Red */
+    }
+    /* --- END: New and Updated Card Content Styles --- */
 </style>
