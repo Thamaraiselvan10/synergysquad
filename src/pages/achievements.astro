@@ -3,7 +3,7 @@
 import Layout from '../layouts/Layout.astro';
 import YearAchievements from '../components/YearAchievements.astro';
 
-// This data is in the correct chronological order: 2023-2024, 2024-2025, 2025-2026.
+// Data is in the correct chronological order: 2023-2024, 2024-2025, 2025-2026.
 const allYearsData = [
     {
         year: '2023-2024',
@@ -19,9 +19,9 @@ const allYearsData = [
             { name: 'Mock Wipro NLTH Challenge Day', date: '10-03-2024' },
         ],
         topperLists: [
-            { title: 'WEEK 7: MOCK WIPRO NLTH', imageUrl: 'https://picsum.photos/seed/2324-1/400/500', toppers: ['Shabari K S (100)', 'Shriyaa S V (100)'] },
-            { title: 'WEEK 6: MOCK TCS NQT', imageUrl: 'https://picsum.photos/seed/2324-2/400/500', toppers: ['Anuvarshini T R (100)', 'Rasika S (100)'] },
-            { title: 'WEEK 5: C MASTERCLASS', imageUrl: 'https://picsum.photos/seed/2324-3/400/500', toppers: ['Vijay K R (100)', 'Vibhav M (100)'] },
+            { title: 'WEEK 7: MOCK WIPRO NLTH', imageUrl: '/events-image/week-7.jpeg', toppers: ['Shabari K S (100)', 'Shriyaa S V (100)'] },
+            { title: 'WEEK 6: MOCK TCS NQT', imageUrl: '/events-image/week-6.jpeg', toppers: ['Anuvarshini T R (100)', 'Rasika S (100)'] },
+            { title: 'WEEK 5: C MASTERCLASS', imageUrl: '/events-image/week-5.jpeg', toppers: ['Vijay K R (100)', 'Vibhav M (100)'] },
         ]
     },
     {
@@ -36,9 +36,9 @@ const allYearsData = [
             { name: 'Hundred - Fold C Proficiency Test', date: '27-10-2024' },
         ],
         topperLists: [
-            { title: 'PATTERN PROGRAMMING TOPPERS', imageUrl: 'https://picsum.photos/seed/2425-1/400/500', toppers: ['Gayathri M (92/100)', 'Ramesh M (90/100)', 'Kanishka N (50/100)'] },
-            { title: 'CONTROL FLOW MASTERY TOPPERS', imageUrl: 'https://picsum.photos/seed/2425-2/400/500', toppers: ['Bharathi S (92/100)', 'Vigneshwaran M (88/100)', 'Kanishka N (86/100)'] },
-            { title: 'ARRAY OPTIMIZATION TOPPERS', imageUrl: 'https://picsum.photos/seed/2425-3/400/500', toppers: ['Vigneshwaran M (94/100)', 'Vigneshwaran M (92/100)', 'Kavitha S (89/100)'] },
+            { title: 'PATTERN PROGRAMMING TOPPERS', imageUrl: '/events-image/week-1.jpeg', toppers: ['Gayathri M (92/100)', 'Ramesh M (90/100)', 'Kanishka N (50/100)'] },
+            { title: 'CONTROL FLOW MASTERY TOPPERS', imageUrl: '/events-image/week-2.jpeg', toppers: ['Bharathi S (92/100)', 'Vigneshwaran M (88/100)', 'Kanishka N (86/100)'] },
+            { title: 'ARRAY OPTIMIZATION TOPPERS', imageUrl: '/events-image/week-3.jpeg', toppers: ['Vigneshwaran M (94/100)', 'Vigneshwaran M (92/100)', 'Kavitha S (89/100)'] },
         ]
     },
     {
@@ -97,10 +97,9 @@ const allYearsData = [
     }
     .year-tab {
         padding: 0.75rem 1.5rem;
-        border: none;
-        background-color: #fff;
         border: 1px solid var(--border-color);
         border-radius: 8px;
+        background-color: #fff;
         font-weight: 600;
         cursor: pointer;
         transition: all 0.3s ease;

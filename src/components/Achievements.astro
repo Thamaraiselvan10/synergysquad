@@ -41,7 +41,6 @@ const allYearsData = [
             { title: 'CONTROL FLOW MASTERY TOPPERS', imageUrl: '/events-image/week-2.jpeg', toppers: ['Bharathi S (92/100)', 'Vigneshwaran M (88/100)', 'Kanishka N (86/100)'] },
             { title: 'ARRAY OPTIMIZATION TOPPERS', imageUrl: '/events-image/week-3.jpeg', toppers: ['Vigneshwaran M (94/100)', 'Vigneshwaran M (92/100)', 'Kavitha S (89/100)'] },
         ]
-        
     },
     {
         year: '2025-2026',
@@ -53,42 +52,62 @@ const allYearsData = [
 ];
 ---
 
-<Layout title="Achievements Archive - Synergy Squad">
-    <div class="archive-header">
-        <h1>Achievements Archive</h1>
-        <p>A complete history of Synergy Squad's programming activities, challenges, and top performers, organized by academic year.</p>
-    </div>
+<section class="achievements">
+    <div class="container">
+        <h2 class="section-title fade-in-up">Proven Placement Success</h2>
+        
+        <div class="highlight-stat fade-in-up">
+            <span class="stat-number">75%+</span>
+            <p class="stat-description">
+                Of Synergy Squad 1.0 members secured placements in Tier-1 IT companies, reflecting the real-world impact of our focused training initiative.
+            </p>
+        </div>
+        
 
-    <div class="year-tabs" id="year-tabs">
-        {allYearsData.map((yearData, index) => (
-            <button class:list={['year-tab', { active: index === 0 }]} data-target={`year-${yearData.year}`}>
-                {yearData.year}
-            </button>
-        ))}
-    </div>
-
-    <main class="archive-content">
-        {allYearsData.map((yearData, index) => (
-            <div class:list={['year-content-wrapper', { 'is-active': index === 0 }]} id={`year-${yearData.year}`}>
-                <YearAchievements data={yearData} />
+        <div class="logo-cloud fade-in-up">
+            <p class="cloud-title">Our members have been hired by industry leaders, including:</p>
+            <div class="logo-grid">
+                {companyLogos.map(logo => (
+                    <img src={`/images/${logo}`} alt={logo.split('.')[0].replace('-', ' ')} class="company-logo" />
+                ))}
             </div>
-        ))}
-    </main>
-</Layout>
+        </div>
+    </div>
+</section>
 
 <style>
-    /* All styles are correct and unchanged */
-    .archive-header { text-align: center; padding: 4rem 1.5rem 3rem; background-color: #fff; border-bottom: 1px solid var(--border-color); }
-    .archive-header h1 { font-size: 3rem; font-weight: 900; margin: 0 0 1rem; }
-    .archive-header p { font-size: 1.125rem; color: var(--text-secondary); max-width: 60ch; margin: auto; }
-    .year-tabs { display: flex; justify-content: center; gap: 0.5rem; padding: 1.5rem; background-color: var(--background-color); position: sticky; top: 73px; z-index: 5; border-bottom: 1px solid var(--border-color); }
-    .year-tab { padding: 0.75rem 1.5rem; border: 1px solid var(--border-color); border-radius: 8px; background-color: #fff; font-weight: 600; cursor: pointer; transition: all 0.3s ease; }
-    .year-tab:hover { background-color: var(--primary-color-hover); color: #fff; border-color: var(--primary-color-hover); }
-    .year-tab.active { background-color: var(--primary-color); color: #fff; border-color: var(--primary-color); }
-    .year-content-wrapper { display: none; }
-    .year-content-wrapper.is-active { display: block; }
-</style>
+    /* Section Styling */
+    .achievements {
+        background-color: #ffffff;
+        padding: 5rem 1.5rem;
+        text-align: center;
+        border-top: 1px solid var(--border-color);
+        border-bottom: 1px solid var(--border-color);
+        overflow: hidden;
+    }
+    .container { max-width: 80ch; margin: auto; }
+    .section-title { font-size: 2.5rem; font-weight: 800; margin-bottom: 3rem; }
+    .highlight-stat { margin-bottom: 4rem; }
+    .stat-number { display: block; font-size: 6rem; font-weight: 800; color: var(--primary-color); line-height: 1; margin-bottom: 1rem; }
+    .stat-description { font-size: 1.125rem; max-width: 60ch; margin: auto; color: var(--text-secondary); }
+    .cloud-title { margin-bottom: 2rem; font-weight: 500; color: var(--text-primary); }
+    .logo-grid { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 3rem; }
+    .company-logo { height: 40px; max-width: 150px; filter: grayscale(100%); opacity: 0.7; transition: filter 0.3s ease, opacity 0.3s ease; }
+    .company-logo:hover { filter: grayscale(0%); opacity: 1; }
 
+    /* --- ANIMATION STYLES --- */
+    .fade-in-up {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    }
+    .fade-in-up.is-visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    .highlight-stat.fade-in-up { transition-delay: 0.2s; }
+    .logo-cloud.fade-in-up { transition-delay: 0.4s; }
+</style>
 
 <script>
     document.addEventListener('DOMContentLoaded', () => {
