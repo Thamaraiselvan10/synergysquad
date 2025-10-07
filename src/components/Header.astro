@@ -12,63 +12,32 @@
         <nav>
             <a href="/challenges">Challenges</a>
             <a href="/achievements">Achievements</a>
-            <a href="/gallery">Gallery</a>
+            <a href="/squad">Squad</a> <!-- Changed from Gallery -->
             <a href="/vision-mission">Vision & Mission</a>
         </nav>
     </div>
 </header>
 <style>
+    /* All styles are correct and unchanged */
     header {
-        background-color: rgba(255, 255, 255, 0.85); /* Slightly less transparent */
-        border-bottom: 1px solid var(--border-color); /* Use our new border color */
-        padding: 0.75rem 1.5rem;
-        position: sticky;
-        top: 0;
-        z-index: 10;
-        backdrop-filter: blur(10px); /* Increased blur */
+        background-color: rgba(255, 255, 255, 0.85); border-bottom: 1px solid var(--border-color);
+        padding: 0.75rem 1.5rem; position: sticky; top: 0; z-index: 10;
+        backdrop-filter: blur(10px);
     }
     .container {
-        margin: auto;
-        max-width: 1200px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
+        margin: auto; max-width: 1200px; display: flex;
+        justify-content: space-between; align-items: center;
     }
-    .logo-group {
-        display: flex;
-        align-items: center;
-        gap: 1rem;
-        text-decoration: none;
-    }
-    .separator {
-        height: 28px;
-        width: 1px;
-        background-color: var(--border-color); /* Use our new border color */
-    }
-    .logo-image {
-        display: block;
-        object-fit: contain;
-    }
+    .logo-group { display: flex; align-items: center; gap: 1rem; text-decoration: none; }
+    .separator { height: 28px; width: 1px; background-color: var(--border-color); }
+    .logo-image { display: block; object-fit: contain; }
     .college-logo { height: 45px; width: auto; }
     .club-logo { height: 40px; width: auto; }
-    .club-name {
-        font-size: 1.25rem;
-        font-weight: 600;
-        color: var(--text-primary); /* Use our new primary text color */
-    }
-    nav {
-        display: flex;
-        align-items: center;
-        gap: 2.5rem;
-    }
+    .club-name { font-size: 1.25rem; font-weight: 600; color: var(--text-primary); }
+    nav { display: flex; align-items: center; gap: 2.5rem; }
     nav a {
-        text-decoration: none;
-        color: var(--text-secondary); /* Use our new secondary text color */
-        font-weight: 500;
-        transition: color 0.2s ease;
-        padding: 0.5rem 0;
+        text-decoration: none; color: var(--text-secondary); font-weight: 500;
+        transition: color 0.2s ease; padding: 0.5rem 0;
     }
-    nav a:hover {
-        color: var(--primary-color);
-    }
+    nav a:hover { color: var(--primary-color); }
 </style>

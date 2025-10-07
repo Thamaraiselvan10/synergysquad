@@ -1,0 +1,165 @@
+---
+// src/pages/squad.astro
+import Layout from '../layouts/Layout.astro';
+
+// --- START: UPDATED DATA STRUCTURE ---
+// The members array now contains objects with detailed information.
+const allSquadsData = [
+    {
+        year: '2023-2024',
+        title: 'Synergy Squad 1.0 Members',
+        members: [
+            { name: 'Abulva M', year: 'IV', section: 'A', regNo: '921120104001' },
+            { name: 'Anuvarshini T R', year: 'IV', section: 'A', regNo: '921120104002' },
+            { name: 'Gayathri R', year: 'IV', section: 'B', regNo: '921120104003' },
+            { name: 'Jeevanandhan J', year: 'IV', section: 'B', regNo: '921120104004' },
+            { name: 'Kamalakannan N G', year: 'IV', section: 'C', regNo: '921120104005' },
+            // ... Add all 40 members with their details
+        ].sort((a, b) => a.name.localeCompare(b.name)) // Sort by name alphabetically
+    },
+    {
+        year: '2024-2025',
+        title: 'Synergy Squad 2.0 Members',
+        members: [
+            { name: 'Arutselvan', year: 'III', section: 'A', regNo: '921121104001' },
+            { name: 'Bharathi S', year: 'III', section: 'A', regNo: '921121104002' },
+            { name: 'Devasree', year: 'III', section: 'B', regNo: '921121104003' },
+            { name: 'Ganesha', year: 'III', section: 'B', regNo: '921121104004' },
+            { name: 'Gayathri', year: 'III', section: 'C', regNo: '921121104005' },
+            // ... Add all 40 members with their details
+        ].sort((a, b) => a.name.localeCompare(b.name)) // Sort by name alphabetically
+    },
+    {
+        year: '2025-2026',
+        title: 'Synergy Squad 3.0 Members (Upcoming)',
+        members: []
+    }
+];
+// --- END: UPDATED DATA STRUCTURE ---
+---
+
+<Layout title="Squad Members - Synergy Squad">
+    <div class="archive-header">
+        <h1>Meet the Squad</h1>
+        <p>A complete directory of the talented and dedicated members of Synergy Squad for each academic year.</p>
+    </div>
+
+    <div class="year-tabs" id="year-tabs">
+        {allSquadsData.map((squadData, index) => (
+            <button class:list={['year-tab', { active: index === 0 }]} data-target={`squad-${squadData.year}`}>
+                {squadData.year}
+            </button>
+        ))}
+    </div>
+
+    <main class="archive-content">
+        {allSquadsData.map((squadData, index) => (
+            <div class:list={['year-content-wrapper', { 'is-active': index === 0 }]} id={`squad-${squadData.year}`}>
+                <div class="year-container">
+                    <div class="summary-block">
+                        <h2>{squadData.title}</h2>
+                    </div>
+                    {squadData.members.length > 0 ? (
+                        <!-- START: NEW TABLE STRUCTURE -->
+                        <div class="table-container">
+                            <div class="table-header">
+                                <div class="cell-name">Student Name</div>
+                                <div class="cell-year">Year</div>
+                                <div class="cell-section">Section</div>
+                                <div class="cell-reg">Register No</div>
+                            </div>
+                            {squadData.members.map(member => (
+                                <div class="table-row">
+                                    <div class="cell-name">{member.name}</div>
+                                    <div class="cell-year">{member.year}</div>
+                                    <div class="cell-section">{member.section}</div>
+                                    <div class="cell-reg">{member.regNo}</div>
+                                </div>
+                            ))}
+                        </div>
+                        <!-- END: NEW TABLE STRUCTURE -->
+                    ) : (
+                        <p class="coming-soon">The squad for this academic year will be announced soon.</p>
+                    )}
+                </div>
+            </div>
+        ))}
+    </main>
+</Layout>
+
+<style>
+    /* Most styles are unchanged */
+    .archive-header { text-align: center; padding: 4rem 1.5rem 3rem; background-color: #fff; border-bottom: 1px solid var(--border-color); }
+    .archive-header h1 { font-size: 3rem; font-weight: 900; margin: 0 0 1rem; }
+    .archive-header p { font-size: 1.125rem; color: var(--text-secondary); max-width: 60ch; margin: auto; }
+    .year-tabs { display: flex; justify-content: center; gap: 0.5rem; padding: 1.5rem; background-color: var(--background-color); position: sticky; top: 73px; z-index: 5; border-bottom: 1px solid var(--border-color); }
+    .year-tab { padding: 0.75rem 1.5rem; border: 1px solid var(--border-color); border-radius: 8px; background-color: #fff; font-weight: 600; cursor: pointer; transition: all 0.3s ease; }
+    .year-tab:hover { background-color: var(--primary-color-hover); color: #fff; border-color: var(--primary-color-hover); }
+    .year-tab.active { background-color: var(--primary-color); color: #fff; border-color: var(--primary-color); }
+    .year-content-wrapper { display: none; }
+    .year-content-wrapper.is-active { display: block; }
+    
+    .year-container { max-width: 1200px; margin: auto; padding: 4rem 1.5rem; }
+    .summary-block { text-align: center; margin-bottom: 3rem; }
+    .summary-block h2 { font-size: 2rem; font-weight: 800; }
+
+    /* --- START: NEW TABLE STYLES --- */
+    .table-container {
+        background-color: #fff;
+        border-radius: 12px;
+        border: 1px solid var(--border-color);
+        box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        overflow: hidden;
+    }
+    .table-header, .table-row {
+        display: grid;
+        /* Define the column widths */
+        grid-template-columns: 2fr 1fr 1fr 1.5fr;
+        gap: 1.5rem;
+        padding: 1rem 1.5rem;
+        align-items: center;
+    }
+    .table-header {
+        background-color: #f8fafc;
+        font-weight: 600;
+        color: var(--text-secondary);
+        font-size: 0.875rem;
+        text-transform: uppercase;
+    }
+    .table-row {
+        border-top: 1px solid var(--border-color);
+    }
+    .table-row:nth-child(even) {
+        background-color: #fdfdfe; /* Subtle zebra striping for readability */
+    }
+    .table-row:hover {
+        background-color: #f8fafc;
+    }
+    .cell-name { font-weight: 600; color: var(--text-primary); }
+    .cell-year, .cell-section { text-align: center; }
+    .cell-reg { font-family: monospace; color: var(--text-secondary); }
+    /* --- END: NEW TABLE STYLES --- */
+    
+    .coming-soon { text-align: center; color: var(--text-secondary); font-size: 1.1rem; }
+</style>
+
+
+<script>
+    // The tab-switching script is identical to the achievements page
+    document.addEventListener('DOMContentLoaded', () => {
+        const tabs = document.querySelectorAll('.year-tab');
+        const contentWrappers = document.querySelectorAll('.year-content-wrapper');
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                tabs.forEach(t => t.classList.remove('active'));
+                contentWrappers.forEach(c => c.classList.remove('is-active'));
+                tab.classList.add('active');
+                const targetId = tab.dataset.target;
+                const targetContent = document.getElementById(targetId);
+                if (targetContent) {
+                    targetContent.classList.add('is-active');
+                }
+            });
+        });
+    });
+</script>

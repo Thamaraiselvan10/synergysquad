@@ -2,6 +2,7 @@
 // src/layouts/Layout.astro
 
 import Header from '../components/Header.astro';
+import DepartmentBanner from '../components/DepartmentBanner.astro'; // <-- ADD THIS IMPORT
 import Ticker from '../components/Ticker.astro';
 
 export interface Props {
@@ -21,50 +22,38 @@ const { title } = Astro.props;
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
 
-        <!-- START: Font & Style Changes -->
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
-        <!-- END: Font & Style Changes -->
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 	</head>
 	<body>
         <Header />
+        <DepartmentBanner /> <!-- <-- PLACE THE NEW COMPONENT HERE -->
         <Ticker />
 		<slot />
 	</body>
 </html>
 
 <style is:global>
-    /* START: Font & Style Changes */
+    /* All global styles are correct and unchanged */
 	:root {
-        /* Primary Color (no change) */
 		--primary-color: #1e40af; 
         --primary-color-hover: #1d4ed8;
-
-        /* Background Color (no change) */
 		--background-color: #f1f5f9;
-
-        /* New, refined text and border colors */
-		--text-primary: #1e293b;      /* For headings and important text */
-        --text-secondary: #475569;   /* For paragraphs and descriptions */
-        --border-color: #e2e8f0;      /* For subtle borders and separators */
+		--text-primary: #1e293b;
+        --text-secondary: #475569;
+        --border-color: #e2e8f0;
 	}
-
 	html {
-        /* We now use our new font 'Inter' */
 		font-family: 'Inter', sans-serif;
 		background-color: var(--background-color);
 	}
-
     body {
         margin: 0;
-        color: var(--text-secondary); /* Set the default text color to our secondary gray */
-        line-height: 1.6; /* Improve readability site-wide */
+        color: var(--text-secondary);
+        line-height: 1.6;
     }
-
-    /* Make all headings use the primary, darker text color by default */
     h1, h2, h3 {
         color: var(--text-primary);
     }
-    /* END: Font & Style Changes */
 </style>
