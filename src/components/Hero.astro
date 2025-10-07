@@ -3,10 +3,8 @@
 ---
 <section class="hero">
     <div class="hero-content">
-        <!-- The h1 is initially empty. The script below will type out the text into it. -->
         <h1 class="title" id="hero-title"></h1>
         
-        <!-- These elements start invisible and will fade in after the typing. -->
         <p class="subtitle animate-on-load">
             An exclusive, results-driven initiative for KIOT's top CSE talent. Through intensive training and mock company challenges, we have placed over 75% of our members in Tier-1 IT companies. We turn potential into proficiency.
         </p>
@@ -22,39 +20,48 @@
         background-position: center;
         padding: 8rem 1.5rem;
         text-align: center;
-        color: #f8fafc; /* Use a slightly softer white */
-        display: flex; /* Helps vertically center content */
+        color: #f8fafc;
+        display: flex;
         align-items: center;
         min-height: 40vh;
     }
     .hero-content { max-width: 75ch; margin: auto; }
 
-    /* --- Title & Typing Animation Styles --- */
+    /* --- START: CORRECTED HERO TITLE STYLE --- */
     .title {
-        font-size: 3.75rem; /* Slightly larger */
+        font-size: 3.75rem;
         font-weight: 800;
         margin-bottom: 1.5rem;
         line-height: 1.2;
-        /* THIS IS THE KEY: A text shadow makes the text readable on any background */
-        text-shadow: 0 3px 10px rgba(0, 0, 0, 0.6);
-        min-height: 140px; /* Prevents layout shift while text is typing */
-    }
+        min-height: 140px;
+        
+        /* Use pure white for maximum brightness */
+        color: #FFFFFF;
 
-    /* Blinking cursor effect */
+        /* A multi-layered shadow to create a "glow" effect */
+        text-shadow: 
+            0 2px 5px rgba(0, 0, 0, 0.8), /* A tight, dark shadow for separation */
+            0 0 15px rgba(96, 165, 250, 0.4), /* A soft blue glow */
+            0 0 30px rgba(96, 165, 250, 0.3); /* A wider, softer blue glow */
+    }
+    /* --- END: CORRECTED HERO TITLE STYLE --- */
+
     .title::after {
         content: '_';
         animation: blink 0.7s infinite;
-        font-weight: 400; /* Make the cursor thinner */
+        font-weight: 400;
     }
     @keyframes blink {
         50% { opacity: 0; }
     }
+    .title.typing-done::after {
+        display: none;
+    }
 
-    /* --- Subtitle & Button Entrance Animation --- */
     .animate-on-load {
-        opacity: 0; /* Start invisible */
+        opacity: 0;
         animation: fadeInUp 0.8s ease-out forwards;
-        animation-delay: 3s; /* IMPORTANT: This delay waits for the typing to finish */
+        animation-delay: 3s;
     }
     @keyframes fadeInUp {
         from { opacity: 0; transform: translateY(20px); }
@@ -66,7 +73,7 @@
         line-height: 1.7;
         margin-bottom: 2.5rem;
         text-shadow: 0 2px 8px rgba(0, 0, 0, 0.7);
-        animation-delay: 3.2s; /* Stagger the animation */
+        animation-delay: 3.2s;
     }
     .cta-button {
         background-color: var(--primary-color);
@@ -78,7 +85,7 @@
         transition: transform 0.3s ease, background-color 0.3s ease;
         display: inline-block;
         box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-        animation-delay: 3.4s; /* Stagger the animation */
+        animation-delay: 3.4s;
     }
     .cta-button:hover {
         background-color: var(--primary-color-hover);
@@ -87,7 +94,6 @@
 </style>
 
 <script>
-    // This script will run on the user's browser to create the typing effect.
     document.addEventListener('DOMContentLoaded', () => {
         const textToType = "Bridge the Gap Between Code and Career";
         const titleElement = document.getElementById('hero-title');
@@ -97,16 +103,12 @@
             if (i < textToType.length) {
                 titleElement.innerHTML += textToType.charAt(i);
                 i++;
-                // Call this function again after a short delay
-                setTimeout(typeWriter, 80); // Adjust speed here (milliseconds)
+                setTimeout(typeWriter, 80);
             } else {
-                // When typing is done, remove the cursor's animation class
-                titleElement.style.borderRight = 'none';
                 titleElement.classList.add('typing-done');
             }
         }
         
-        // Start the animation
         typeWriter();
     });
 </script>

@@ -1,76 +1,57 @@
 ---
 // src/components/AchievementsWall.astro
 
+// THIS IS THE COMPLETE AND CORRECTED DUMMY DATA
 const achievements = [
     // --- VISIBLE ON LOAD (LATEST ACHIEVEMENTS) ---
     { 
-        title: 'WEEK 7: MOCK WIPRO NLTH', 
-        imageUrl: 'https://images.unsplash.com/photo-1517694712202-1428bc64a2f2?q=80&w=2070', 
+        title: 'WEEK 8: MOCK PRATIAN', 
+        imageUrl: '/events-image/week-8.jpeg', 
         toppers: ['Shabari K S (100)', 'Shriyaa S V (100)', 'Selva Ganapathi (100)'] 
     },
     { 
-        title: 'WEEK 6: MOCK TCS NINJA NQT', 
-        imageUrl: 'https://images.unsplash.com/photo-1526649661456-89c7ed4d8ab2?q=80&w=1974', 
+        title: 'WEEK 7: MOCK WIPRO NLTH', 
+        imageUrl: '/events-image/week-7.jpeg', 
         toppers: ['Anuvarshini T R (100)', 'Rasika S (100)', 'Vijay K R (100)', 'Gayathri R (100)', 'Kamalakannan N G (100)'] 
     },
     { 
-        title: 'WEEK 5: C MASTERCLASS', 
-        imageUrl: 'https://images.unsplash.com/photo-1550063873-ab792950096b?q=80&w=1887', 
+        title: 'WEEK 6: C MASTERCLASS', 
+        imageUrl: '/events-image/week-6.jpeg', 
         toppers: ['Vijay K R (100)', 'Vibhav M (100)', 'Yuvasree M (100)'] 
     },
     { 
-        title: 'WEEK 4: C QUIZATHON', 
-        imageUrl: 'https://images.unsplash.com/photo-1504639725590-34d0984388bd?q=80&w=1887',
+        title: 'WEEK 5: C QUIZATHON', 
+        imageUrl: '/events-image/week-5.jpeg',
         toppers: ['Jeslin Maria Jacob (83)', 'Subasri C (66)', 'Kiruthika V M (66)']
     },
     { 
-        title: 'WEEK 2: MASTERING IN ARRAY', 
-        imageUrl: 'https://images.unsplash.com/photo-1587620962725-abab7fe55159?q=80&w=2070', 
+        title: 'WEEK 4: MASTERING IN STRINGS', 
+        imageUrl: '/events-image/week-4.jpeg', 
+        toppers: ['Vibav Mahendran (94/100)', 'Shriyaa S V (80/100)', 'Saranya A (73/100)'] 
+    },
+    { 
+        title: 'WEEK 3: MASTERING IN ARRAY', 
+        imageUrl: '/events-image/week-3.jpeg', 
         toppers: ['Jeevanandhan (100)', 'Shriyaa S V (100)', 'Vijay K R (100)'] 
+    },
+    
+    // --- HIDDEN UNTIL "LOAD MORE" IS CLICKED ---
+    { 
+        title: 'WEEK 2: MASTERING IN ARRAY', 
+        imageUrl: '/events-image/week-2.jpeg', 
+        toppers: ['Karthikeyan (88/100)', 'Meenachi S (88/100)', 'Keerthana D (80/100)'] 
     },
     { 
         title: 'WEEK 1: PATTERN DAY', 
-        imageUrl: 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=2070', 
+        imageUrl: '/events-image/week-1.jpeg', 
         toppers: ['Vijay K R (100)', 'Anuvarshini T (92)', 'Keerthana D (92)'] 
-    },
-
-    // --- HIDDEN UNTIL "LOAD MORE" IS CLICKED ---
-    { 
-        title: 'SYNERGY 1.0 PLACEMENT HIGHLIGHT', 
-        imageUrl: 'https://images.unsplash.com/photo-1542744095-291d1f67b221?q=80&w=2070', 
-        toppers: ['Shabari K S (AMI)', 'Sathyaram R (Mindtree)', 'Keerthana D (Mr. Cooper)'] 
-    },
-    { 
-        title: 'ADVANCED JAVA WORKSHOP', 
-        imageUrl: 'https://images.unsplash.com/photo-1542831371-29b0f74f9713?q=80&w=2070', 
-        toppers: ['Gokul P', 'Priya S', 'Ranjith K'] 
-    },
-    { 
-        title: 'PYTHON FOR DATA SCIENCE BOOTCAMP', 
-        imageUrl: 'https://images.unsplash.com/photo-1507146426996-321340bADbb2?q=80&w=2070', 
-        toppers: ['Sanjana V', 'Mohamed A', 'Naveen R'] 
-    },
-    { 
-        title: 'MOCK INFOSYS CHALLENGE 2023', 
-        imageUrl: 'https://images.unsplash.com/photo-1629904853716-f0bc54eea481?q=80&w=2072', 
-        toppers: ['Karthik Raja', 'Meena L', 'Arun Kumar'] 
-    },
-    { 
-        title: 'UI/UX DESIGN PRINCIPLES', 
-        imageUrl: 'https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?q=80&w=2070', 
-        toppers: ['Divya B', 'Suresh M', 'Praveen K'] 
-    },
-    { 
-        title: 'COMPETITIVE CODING STRATEGIES', 
-        imageUrl: 'https://images.unsplash.com/photo-1580894732444-8ecded794825?q=80&w=2070', 
-        toppers: ['Vignesh S', 'Anitha G', 'Bala T'] 
     }
+    
 ];
 ---
 
 <section class="achievements-wall">
     <div class="container">
-        <!-- THIS 'fade-in-up' CLASS WAS ADDED -->
         <div class="section-header fade-in-up">
             <h2 class="section-title">A Legacy of Excellence</h2>
             <p class="section-subtitle">
@@ -107,76 +88,58 @@ const achievements = [
 <style>
     .achievements-wall { padding: 5rem 1.5rem; }
     .container { max-width: 1400px; margin: auto; }
+    .section-header { text-align: center; margin-bottom: 5rem; }
+    .section-title { font-size: 2.75rem; font-weight: 900; margin-bottom: 1.5rem; position: relative; display: inline-block; }
+    .section-title::after { content: ''; position: absolute; bottom: -0.75rem; left: 50%; transform: translateX(-50%); height: 5px; width: 0; background: linear-gradient(90deg, var(--primary-color), #6366f1); border-radius: 5px; animation: grow-underline 1s ease-out forwards; animation-delay: 0.5s; }
+    @keyframes grow-underline { to { width: 100px; } }
+    .section-subtitle { max-width: 65ch; margin: auto; font-size: 1.125rem; color: var(--text-secondary); line-height: 1.8; }
 
-    /* --- START: AESTHETIC HEADER STYLES --- */
-    .section-header {
-        text-align: center;
-        margin-bottom: 5rem;
+    /* --- STANDARD CSS GRID LAYOUT --- */
+    .achievements-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2rem;
     }
-    .section-title {
-        font-size: 2.75rem;
-        font-weight: 900;
-        margin-bottom: 1.5rem;
-        position: relative;
-        display: inline-block;
-    }
-    .section-title::after {
-        content: '';
-        position: absolute;
-        bottom: -0.75rem;
-        left: 50%;
-        transform: translateX(-50%);
-        height: 5px;
-        width: 0;
-        background: linear-gradient(90deg, var(--primary-color), #6366f1);
-        border-radius: 5px;
-        animation: grow-underline 1s ease-out forwards;
-        /* The underline animation will start after the header fades in */
-        animation-delay: 0.5s; 
-    }
-    @keyframes grow-underline {
-        to { width: 100px; }
-    }
-    .section-subtitle {
-        max-width: 65ch;
-        margin: auto;
-        font-size: 1.125rem;
-        color: var(--text-secondary);
-        line-height: 1.8;
-    }
-    /* --- END: AESTHETIC HEADER STYLES --- */
+    @media (max-width: 1024px) { .achievements-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 640px) { .achievements-grid { grid-template-columns: 1fr; } }
 
-    /* --- Masonry Grid & Card Styles --- */
-    .achievements-grid { column-count: 3; column-gap: 2rem; }
-    @media (max-width: 1024px) { .achievements-grid { column-count: 2; } }
-    @media (max-width: 640px) { .achievements-grid { column-count: 1; } }
     .achievement-card {
         background-color: #fff; border-radius: 12px; border: 1px solid var(--border-color);
         box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05), 0 2px 4px -2px rgb(0 0 0 / 0.05);
-        display: inline-block; width: 100%; transition: transform 0.3s ease;
-        margin-bottom: 2rem; break-inside: avoid;
+        display: flex;
+        flex-direction: column;
+        transition: transform 0.3s ease;
     }
+    
     .achievement-card:hover { transform: translateY(-5px); }
     .image-container { border-top-left-radius: 11px; border-top-right-radius: 11px; overflow: hidden; aspect-ratio: 4 / 5; }
     .image-container img { width: 100%; height: 100%; object-fit: cover; }
-    .content-container { padding: 1.25rem; }
+    
+    .content-container {
+        padding: 1.25rem;
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1; /* Ensures cards in a row have equal height */
+    }
     .content-container h3 { font-size: 1.125rem; font-weight: 700; margin-top: 0; margin-bottom: 1rem; }
     .toppers-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.5rem; }
     .toppers-list li { font-size: 0.9rem; font-weight: 500; color: var(--text-secondary); padding-left: 1.5rem; position: relative; }
     .toppers-list li::before { content: '🏆'; position: absolute; left: 0; top: 0; font-size: 0.8rem; }
     
-    /* --- CTA & Animation Styles --- */
-    .cta-container { text-align: center; margin-top: 2rem; }
+    .cta-container { text-align: center; margin-top: 4rem; }
     .cta-button {
         background-color: transparent; color: var(--primary-color); padding: 1rem 2rem;
         text-decoration: none; font-weight: 700; border-radius: 8px; border: 2px solid var(--primary-color);
         transition: all 0.3s ease; cursor: pointer;
     }
     .cta-button:hover { background-color: var(--primary-color); color: #fff; }
+
     .fade-in-up { opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease-out, transform 0.6s ease-out; }
     .fade-in-up.is-visible { opacity: 1; transform: translateY(0); }
     .hidden { display: none !important; }
 </style>
+
+
 <script>
     // The script is unchanged
     document.addEventListener('DOMContentLoaded', () => {
