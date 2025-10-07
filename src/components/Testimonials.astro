@@ -1,11 +1,46 @@
 ---
 // src/components/Testimonials.astro
+
+// --- START: NEW DATA FROM YOUR DOCUMENT ---
+// This data is taken directly from the "Voices of Excellence" section of your PDF.
 const testimonials = [
-    { quote: "This weekly programming day challenge is a good initiative. It provides a great platform that is competitive and enhances our learning.", author: "Anuvarshini T R", class: "Topper, CSE-A", imageUrl: "https://uifaces.co/our-content/donated/xP-tA-s8.jpg" },
-    { quote: "Its really good to solve new pattern programs. I got few new ideas to solve the program, thanks for this assessment.", author: "Vijay K R", class: "Topper, CSE-C", imageUrl: "https://uifaces.co/our-content/donated/gPZwCOP4.jpg" },
-    { quote: "Arrays are crucial in competitive programming. Today's assessment helped me handle array problems better. I enjoyed solving all the problems.", author: "Jeevanandhan J", class: "Topper, CSE-A", imageUrl: "https://uifaces.co/our-content/donated/YN92uVn9.jpg" },
-    { quote: "This week's challenge helped me identify my weaknesses in this specific topic. I enjoyed solving various types of questions in Strings.", author: "Karthikeyan S", class: "Topper, CSE-B", imageUrl: "https://uifaces.co/our-content/donated/n462iV3h.jpg" }
+    {
+        quote: "This weekly programming day challenge is a good initiative. It provides a great platform that is competitive and enhances our learning.",
+        author: "Anuvarshini T R",
+        class: "Topper, CSE-A",
+        // LATER: Replace this with your local image: '/images/anuvarshini-tr.jpg'
+        imageUrl: "https://i.pravatar.cc/150?u=AnuvarshiniTR" 
+    },
+    {
+        quote: "Its really good to solve new pattern programs. I got few new ideas to solve the program, thanks for this assessment.",
+        author: "Vijay K R",
+        class: "Topper, CSE-C",
+        // LATER: Replace this with your local image: '/images/vijay-kr.jpg'
+        imageUrl: "https://i.pravatar.cc/150?u=VijayKR"
+    },
+    {
+        quote: "Arrays are crucial in competitive programming. Today's assessment helped me handle array problems better. I enjoyed solving all the problems.",
+        author: "Jeevanandhan J",
+        class: "Topper, CSE-A",
+        // LATER: Replace this with your local image: '/images/jeevanandhan-j.jpg'
+        imageUrl: "https://i.pravatar.cc/150?u=JeevanandhanJ"
+    },
+    {
+        quote: "This week's challenge helped me identify my weaknesses in this specific topic. I enjoyed solving various types of questions in Strings.",
+        author: "Karthikeyan S",
+        class: "Topper, CSE-B",
+        // LATER: Replace this with your local image: '/images/karthikeyan-s.jpg'
+        imageUrl: "https://i.pravatar.cc/150?u=KarthikeyanS"
+    },
+    {
+        quote: "This MCQ assessment really makes me want to debug the code line by line and predict the output. Apart from coding, this helps me understand the concepts even deeper.",
+        author: "Kiruthika V M",
+        class: "Topper, CSE-B",
+        // LATER: Replace this with your local image: '/images/kiruthika-vm.jpg'
+        imageUrl: "https://i.pravatar.cc/150?u=KiruthikaVM"
+    }
 ];
+// --- END: NEW DATA FROM YOUR DOCUMENT ---
 ---
 
 <div class="section-separator"></div>
@@ -43,6 +78,7 @@ const testimonials = [
 </section>
 
 <style>
+    /* All styles are correct and do not need to be changed */
     .section-separator { max-width: 1400px; margin: 0 auto; height: 1px; background-color: var(--border-color); }
     .testimonials { padding: 6rem 1.5rem; background-color: #ffffff; }
     .container { max-width: 1200px; margin: auto; }
@@ -51,8 +87,10 @@ const testimonials = [
     .section-title::after { content: ''; position: absolute; bottom: -0.5rem; left: 50%; transform: translateX(-50%); height: 5px; width: 0; background: linear-gradient(90deg, var(--primary-color), #6366f1); border-radius: 5px; animation: grow-underline 1s ease-out forwards; animation-delay: 0.5s; }
     @keyframes grow-underline { to { width: 100px; } }
     .section-subtitle { max-width: 65ch; margin: auto; font-size: 1.125rem; color: var(--text-secondary); line-height: 1.8; }
+    
+    .splide { padding: 1rem 0 2.5rem; }
+    .splide__slide { padding-bottom: 0; }
 
-    .splide__slide { padding-bottom: 2rem; }
     .testimonial-card {
         background-color: #f8fafc;
         padding: 2.5rem 2.5rem 2rem;
@@ -61,34 +99,18 @@ const testimonials = [
         box-shadow: 0 10px 25px -5px rgb(0 0 0 / 0.05);
         height: 100%; display: flex; flex-direction: column; justify-content: space-between; position: relative;
     }
-    
     .testimonial-card::before {
-        content: '“';
-        position: absolute;
-        top: 1.75rem;
-        left: 2rem;
-        font-size: 6rem;
-        /* --- THIS IS THE CORRECTED COLOR --- */
-        color: var(--background-color); 
-        z-index: 1;
-        line-height: 1;
+        content: '“'; position: absolute; top: 1.75rem; left: 2rem; font-size: 6rem;
+        color: var(--background-color); z-index: 1; line-height: 1;
     }
-
-    .quote {
-        font-size: 1.25rem;
-        font-style: italic;
-        color: var(--text-primary);
-        line-height: 1.7;
-        margin: 0 0 2.5rem 0;
-        position: relative;
-        z-index: 2;
-    }
+    .quote { font-size: 1.25rem; font-style: italic; color: var(--text-primary); line-height: 1.7; margin: 0 0 2.5rem 0; position: relative; z-index: 2; }
     .author-info { display: flex; align-items: center; gap: 1rem; position: relative; z-index: 2; }
     .author-image { width: 60px; height: 60px; border-radius: 50%; object-fit: cover; border: 2px solid var(--border-color); }
     .author-details { display: flex; flex-direction: column; }
     .author-name { font-weight: 700; color: var(--text-primary); }
     .author-class { font-size: 0.9rem; color: var(--text-secondary); }
     
+    .splide__pagination { bottom: 0; }
     .splide__pagination__page { background-color: #cbd5e1; }
     .splide__pagination__page.is-active { background-color: var(--primary-color); transform: scale(1.2); }
     .fade-in-up { opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease-out, transform 0.6s ease-out; }
@@ -98,7 +120,6 @@ const testimonials = [
 
 <script>
     import Splide from '@splidejs/splide';
-
     document.addEventListener('DOMContentLoaded', () => {
         const elements = document.querySelectorAll('.fade-in-up');
         const observer = new IntersectionObserver((entries) => {
@@ -112,9 +133,18 @@ const testimonials = [
         elements.forEach(element => observer.observe(element));
         
         const testimonialsSlider = new Splide('#testimonials-slider', {
-            type: 'loop', perPage: 2, gap: '2rem', arrows: false,
-            pagination: true, autoplay: true, interval: 5000,
-            breakpoints: { 768: { perPage: 1 } },
+            type: 'loop',
+            perPage: 2,
+            gap: '2rem',
+            arrows: false,
+            pagination: true,
+            autoplay: true,
+            interval: 5000,
+            breakpoints: {
+                768: {
+                    perPage: 1,
+                },
+            },
         });
         testimonialsSlider.mount();
     });
