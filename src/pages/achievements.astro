@@ -1,0 +1,140 @@
+---
+// src/pages/achievements.astro
+import Layout from '../layouts/Layout.astro';
+import YearAchievements from '../components/YearAchievements.astro';
+
+// We have now added data for '2024-2025' and a placeholder for '2025-2026'.
+const allYearsData = [
+    {
+        year: '2024-2025',
+        title: 'Synergy Squad 2.0: Scaling the Impact to Pre-Final Years',
+        summary: 'Following the success of version 1.0, Synergy Squad 2.0 expanded the initiative to III Year CSE students. The identification process was conducted through 7 Mock TCS CodeVita Assessments, preparing them for industry-level coding challenges and enhancing their logical thinking and problem-solving skills.',
+        weeklyActivities: [
+            { name: 'Pattern Programming Exploration Day', date: '30-09-2024' },
+            { name: 'Control Flow Mastery Day', date: '06-10-2024' },
+            { name: 'Array Optimization Master Class Day', date: '13-10-2024' },
+            { name: 'Efficient String Manipulation Day', date: '20-10-2024' },
+            { name: 'Hundred - Fold C Proficiency Test', date: '27-10-2024' },
+        ],
+        topperLists: [
+            { title: 'PATTERN PROGRAMMING TOPPERS', imageUrl: 'https://picsum.photos/seed/2425-1/400/500', toppers: ['Gayathri M (92/100)', 'Ramesh M (90/100)', 'Kanishka N (50/100)'] },
+            { title: 'CONTROL FLOW MASTERY TOPPERS', imageUrl: 'https://picsum.photos/seed/2425-2/400/500', toppers: ['Bharathi S (92/100)', 'Vigneshwaran M (88/100)', 'Kanishka N (86/100)'] },
+            { title: 'ARRAY OPTIMIZATION TOPPERS', imageUrl: 'https://picsum.photos/seed/2425-3/400/500', toppers: ['Vigneshwaran M (94/100)', 'Vigneshwaran M (92/100)', 'Kavitha S (89/100)'] },
+        ]
+    },
+    {
+        year: '2023-2024',
+        title: 'Synergy Squad 1.0: A Strategic Java Programming Initiative',
+        summary: 'Focused on final year students, this initiative provided intensive Java refresher training and weekly challenges, resulting in over 75% of members securing placements in Tier-1 IT companies.',
+        weeklyActivities: [
+            { name: 'Pattern Day', date: '21-01-2024' },
+            { name: 'Mastering in Array Day', date: '28-01-2024' },
+            { name: 'Mastering in Strings Day', date: '04-02-2024' },
+            { name: 'C Programming MCQ Day', date: '11-02-2024' },
+            { name: 'C Programming Master Class Day', date: '18-02-2024' },
+            { name: 'Mock TCS Ninja NQT Challenge Day', date: '25-02-2024' },
+            { name: 'Mock Wipro NLTH Challenge Day', date: '10-03-2024' },
+        ],
+        topperLists: [
+            { title: 'WEEK 7: MOCK WIPRO NLTH', imageUrl: 'https://picsum.photos/seed/2324-1/400/500', toppers: ['Shabari K S (100)', 'Shriyaa S V (100)'] },
+            { title: 'WEEK 6: MOCK TCS NQT', imageUrl: 'https://picsum.photos/seed/2324-2/400/500', toppers: ['Anuvarshini T R (100)', 'Rasika S (100)'] },
+            { title: 'WEEK 5: C MASTERCLASS', imageUrl: 'https://picsum.photos/seed/2324-3/400/500', toppers: ['Vijay K R (100)', 'Vibhav M (100)'] },
+        ]
+    },
+    {
+        year: '2025-2026',
+        title: 'Coming Soon',
+        summary: 'Information for the upcoming academic year will be available here soon.',
+        weeklyActivities: [],
+        topperLists: []
+    }
+];
+---
+
+<Layout title="Achievements Archive - Synergy Squad">
+    <div class="archive-header">
+        <h1>Achievements Archive</h1>
+        <p>A complete history of Synergy Squad's programming activities, challenges, and top performers, organized by academic year.</p>
+    </div>
+
+    <div class="year-tabs" id="year-tabs">
+        {allYearsData.map((yearData, index) => (
+            <button class:list={['year-tab', { active: index === 0 }]} data-target={`year-${yearData.year}`}>
+                {yearData.year}
+            </button>
+        ))}
+    </div>
+
+    <main class="archive-content">
+        {allYearsData.map((yearData, index) => (
+            <div class:list={['year-content-wrapper', { 'is-active': index === 0 }]} id={`year-${yearData.year}`}>
+                <YearAchievements data={yearData} />
+            </div>
+        ))}
+    </main>
+</Layout>
+
+<style>
+    /* All styles are correct and unchanged */
+    .archive-header {
+        text-align: center;
+        padding: 4rem 1.5rem 3rem;
+        background-color: #fff;
+        border-bottom: 1px solid var(--border-color);
+    }
+    .archive-header h1 { font-size: 3rem; font-weight: 900; margin: 0 0 1rem; }
+    .archive-header p { font-size: 1.125rem; color: var(--text-secondary); max-width: 60ch; margin: auto; }
+    .year-tabs {
+        display: flex;
+        justify-content: center;
+        gap: 0.5rem;
+        padding: 1.5rem;
+        background-color: var(--background-color);
+        position: sticky;
+        top: 73px;
+        z-index: 5;
+        border-bottom: 1px solid var(--border-color);
+    }
+    .year-tab {
+        padding: 0.75rem 1.5rem;
+        border: none;
+        background-color: #fff;
+        border: 1px solid var(--border-color);
+        border-radius: 8px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+    .year-tab:hover {
+        background-color: var(--primary-color-hover);
+        color: #fff;
+        border-color: var(--primary-color-hover);
+    }
+    .year-tab.active {
+        background-color: var(--primary-color);
+        color: #fff;
+        border-color: var(--primary-color);
+    }
+    .year-content-wrapper { display: none; }
+    .year-content-wrapper.is-active { display: block; }
+</style>
+
+<script>
+    // The script is correct and unchanged
+    document.addEventListener('DOMContentLoaded', () => {
+        const tabs = document.querySelectorAll('.year-tab');
+        const contentWrappers = document.querySelectorAll('.year-content-wrapper');
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                tabs.forEach(t => t.classList.remove('active'));
+                contentWrappers.forEach(c => c.classList.remove('is-active'));
+                tab.classList.add('active');
+                const targetId = tab.dataset.target;
+                const targetContent = document.getElementById(targetId);
+                if (targetContent) {
+                    targetContent.classList.add('is-active');
+                }
+            });
+        });
+    });
+</script>
