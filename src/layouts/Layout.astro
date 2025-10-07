@@ -2,8 +2,9 @@
 // src/layouts/Layout.astro
 
 import Header from '../components/Header.astro';
-import DepartmentBanner from '../components/DepartmentBanner.astro'; // <-- ADD THIS IMPORT
+import DepartmentBanner from '../components/DepartmentBanner.astro';
 import Ticker from '../components/Ticker.astro';
+import Footer from '../components/Footer.astro'; // <-- ADD THIS IMPORT
 
 export interface Props {
 	title: string;
@@ -28,9 +29,10 @@ const { title } = Astro.props;
 	</head>
 	<body>
         <Header />
-        <DepartmentBanner /> <!-- <-- PLACE THE NEW COMPONENT HERE -->
+        <DepartmentBanner />
         <Ticker />
-		<slot />
+		<slot /> <!-- This is where the page content goes -->
+        <Footer /> <!-- <-- PLACE THE NEW COMPONENT HERE -->
 	</body>
 </html>
 
@@ -53,7 +55,7 @@ const { title } = Astro.props;
         color: var(--text-secondary);
         line-height: 1.6;
     }
-    h1, h2, h3 {
+    h1, h2, h3, h4 { /* Added h4 for the footer */
         color: var(--text-primary);
     }
 </style>

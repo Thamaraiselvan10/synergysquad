@@ -1,93 +1,71 @@
 ---
-// src/pages/achievements.astro
-import Layout from '../layouts/Layout.astro';
-import YearAchievements from '../components/YearAchievements.astro';
+// src/components/Achievements.astro
 
-const allYearsData = [
-    {
-        year: '2023-2024',
-        title: 'Synergy Squad 1.0: A Strategic Java Programming Initiative',
-        summary: 'Focused on final year students, this initiative provided intensive Java refresher training and weekly challenges, resulting in over 75% of members securing placements in Tier-1 IT companies.',
-        weeklyActivities: [
-            { name: 'Pattern Day', date: '21-01-2024' },
-            { name: 'Mastering in Array Day', date: '28-01-2024' },
-            { name: 'Mastering in Strings Day', date: '04-02-2024' },
-            { name: 'C Programming MCQ Day', date: '11-02-2024' },
-            { name: 'C Programming Master Class Day', date: '18-02-2024' },
-            { name: 'Mock TCS Ninja NQT Challenge Day', date: '25-02-2024' },
-            { name: 'Mock Wipro NLTH Challenge Day', date: '10-03-2024' },
-        ],
-        // --- IMAGE URLS UPDATED HERE ---
-        topperLists: [
-            { title: 'WEEK 7: MOCK WIPRO NLTH', imageUrl: '/events-image/week-7.jpeg', toppers: ['Shabari K S (100)', 'Shriyaa S V (100)'] },
-            { title: 'WEEK 6: MOCK TCS NQT', imageUrl: '/events-image/week-6.jpeg', toppers: ['Anuvarshini T R (100)', 'Rasika S (100)'] },
-            { title: 'WEEK 5: C MASTERCLASS', imageUrl: '/events-image/week-5.jpeg', toppers: ['Vijay K R (100)', 'Vibhav M (100)'] },
-        ]
-    },
-    {
-        year: '2024-2025',
-        title: 'Synergy Squad 2.0: Scaling the Impact to Pre-Final Years',
-        summary: 'Following the success of version 1.0, Synergy Squad 2.0 expanded the initiative to III Year CSE students...',
-        weeklyActivities: [
-            { name: 'Pattern Programming Exploration Day', date: '30-09-2024' },
-            { name: 'Control Flow Mastery Day', date: '06-10-2024' },
-            { name: 'Array Optimization Master Class Day', date: '13-10-2024' },
-            { name: 'Efficient String Manipulation Day', date: '20-10-2024' },
-            { name: 'Hundred - Fold C Proficiency Test', date: '27-10-2024' },
-        ],
-        // --- IMAGE URLS UPDATED HERE ---
-        topperLists: [
-            { title: 'PATTERN PROGRAMMING TOPPERS', imageUrl: '/events-image/week-1.jpeg', toppers: ['Gayathri M (92/100)', 'Ramesh M (90/100)', 'Kanishka N (50/100)'] },
-            { title: 'CONTROL FLOW MASTERY TOPPERS', imageUrl: '/events-image/week-2.jpeg', toppers: ['Bharathi S (92/100)', 'Vigneshwaran M (88/100)', 'Kanishka N (86/100)'] },
-            { title: 'ARRAY OPTIMIZATION TOPPERS', imageUrl: '/events-image/week-3.jpeg', toppers: ['Vigneshwaran M (94/100)', 'Vigneshwaran M (92/100)', 'Kavitha S (89/100)'] },
-        ]
-    },
-    {
-        year: '2025-2026',
-        title: 'Coming Soon',
-        summary: 'Information for the upcoming academic year will be available here soon.',
-        weeklyActivities: [],
-        topperLists: []
-    }
+// This list now has the correct file extensions from your screenshot.
+const companyLogos = [
+    'ami-logo.svg',             // Corrected from .png to .svg
+    'mr-cooper-logo.webp',        // Corrected from .png to .webp
+    'tech-mahindra-logo.png',
+    'mindtree-logo.png',
+    'tcs-logo.png'
 ];
 ---
 
-<Layout title="Achievements Archive - Synergy Squad">
-    <div class="archive-header">
-        <h1>Achievements Archive</h1>
-        <p>A complete history of Synergy Squad's programming activities, challenges, and top performers, organized by academic year.</p>
-    </div>
+<section class="achievements">
+    <div class="container">
+        <h2 class="section-title fade-in-up">Proven Placement Success</h2>
+        
+        <div class="highlight-stat fade-in-up">
+            <span class="stat-number">75%+</span>
+            <p class="stat-description">
+                Of Synergy Squad 1.0 members secured placements in Tier-1 IT companies, reflecting the real-world impact of our focused training initiative.
+            </p>
+        </div>
 
-    <div class="year-tabs" id="year-tabs">
-        {allYearsData.map((yearData, index) => (
-            <button class:list={['year-tab', { active: index === 0 }]} data-target={`year-${yearData.year}`}>
-                {yearData.year}
-            </button>
-        ))}
-    </div>
-
-    <main class="archive-content">
-        {allYearsData.map((yearData, index) => (
-            <div class:list={['year-content-wrapper', { 'is-active': index === 0 }]} id={`year-${yearData.year}`}>
-                <YearAchievements data={yearData} />
+        <div class="logo-cloud fade-in-up">
+            <p class="cloud-title">Our members have been hired by industry leaders, including:</p>
+            <div class="logo-grid">
+                {companyLogos.map(logo => (
+                    <img src={`/images/${logo}`} alt={logo.split('.')[0].replace('-', ' ')} class="company-logo" />
+                ))}
             </div>
-        ))}
-    </main>
-</Layout>
+        </div>
+    </div>
+</section>
 
 <style>
-    /* All styles are correct and unchanged */
-    .archive-header { text-align: center; padding: 4rem 1.5rem 3rem; background-color: #fff; border-bottom: 1px solid var(--border-color); }
-    .archive-header h1 { font-size: 3rem; font-weight: 900; margin: 0 0 1rem; }
-    .archive-header p { font-size: 1.125rem; color: var(--text-secondary); max-width: 60ch; margin: auto; }
-    .year-tabs { display: flex; justify-content: center; gap: 0.5rem; padding: 1.5rem; background-color: var(--background-color); position: sticky; top: 73px; z-index: 5; border-bottom: 1px solid var(--border-color); }
-    .year-tab { padding: 0.75rem 1.5rem; border: 1px solid var(--border-color); border-radius: 8px; background-color: #fff; font-weight: 600; cursor: pointer; transition: all 0.3s ease; }
-    .year-tab:hover { background-color: var(--primary-color-hover); color: #fff; border-color: var(--primary-color-hover); }
-    .year-tab.active { background-color: var(--primary-color); color: #fff; border-color: var(--primary-color); }
-    .year-content-wrapper { display: none; }
-    .year-content-wrapper.is-active { display: block; }
-</style>
+    /* Section Styling */
+    .achievements {
+        background-color: #ffffff;
+        padding: 5rem 1.5rem;
+        text-align: center;
+        border-top: 1px solid var(--border-color);
+        border-bottom: 1px solid var(--border-color);
+        overflow: hidden;
+    }
+    .container { max-width: 80ch; margin: auto; }
+    .section-title { font-size: 2.5rem; font-weight: 800; margin-bottom: 3rem; }
+    .highlight-stat { margin-bottom: 4rem; }
+    .stat-number { display: block; font-size: 6rem; font-weight: 800; color: var(--primary-color); line-height: 1; margin-bottom: 1rem; }
+    .stat-description { font-size: 1.125rem; max-width: 60ch; margin: auto; color: var(--text-secondary); }
+    .cloud-title { margin-bottom: 2rem; font-weight: 500; color: var(--text-primary); }
+    .logo-grid { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 3rem; }
+    .company-logo { height: 40px; max-width: 150px; filter: grayscale(100%); opacity: 0.7; transition: filter 0.3s ease, opacity 0.3s ease; }
+    .company-logo:hover { filter: grayscale(0%); opacity: 1; }
 
+    /* --- ANIMATION STYLES --- */
+    .fade-in-up {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    }
+    .fade-in-up.is-visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    .highlight-stat.fade-in-up { transition-delay: 0.2s; }
+    .logo-cloud.fade-in-up { transition-delay: 0.4s; }
+</style>
 
 <script>
     document.addEventListener('DOMContentLoaded', () => {

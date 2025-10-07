@@ -1,0 +1,106 @@
+---
+// src/components/Footer.astro
+
+// Placeholder for social media links. LATER, we can make these dynamic.
+const socialLinks = [
+    { name: 'GitHub', url: '#', icon: 'github' },
+    { name: 'LinkedIn', url: '#', icon: 'linkedin' },
+    { name: 'Email', url: 'mailto:synergysquad@kiot.ac.in', icon: 'email' }
+];
+---
+
+<footer class="site-footer">
+    <div class="container">
+        <div class="footer-grid">
+            <!-- Column 1: Branding -->
+            <div class="footer-column brand-column">
+                <a href="/" class="footer-logo-group">
+                    <img src="/images/college-logo.png" alt="KIOT Logo" class="footer-logo"/>
+                    <img src="/images/club-logo.png" alt="Synergy Squad Logo" class="footer-logo"/>
+                </a>
+                <p class="tagline">Driving coding excellence and bridging the gap between code and career for the students of KIOT.</p>
+            </div>
+
+            <!-- Column 2: Quick Links -->
+            <div class="footer-column">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/achievements">Achievements</a></li>
+                    <li><a href="/squad">Squad</a></li>
+                    <li><a href="/vision-mission">Vision & Mission</a></li>
+                </ul>
+            </div>
+
+            <!-- Column 3: Connect -->
+            <div class="footer-column">
+                <h4>Connect With Us</h4>
+                <div class="social-links">
+                    <!-- This part would be more advanced with actual SVG icons, but we'll use text for now -->
+                    <a href="#" target="_blank">GitHub</a>
+                    <a href="#" target="_blank">LinkedIn</a>
+                    <a href="mailto:synergysquad@kiot.ac.in">Email</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom-bar">
+            <p>&copy; {new Date().getFullYear()} Synergy Squad - KIOT, CSE Department. All Rights Reserved.</p>
+        </div>
+    </div>
+</footer>
+
+<style>
+    .site-footer {
+        background-color: #111827; /* Dark background */
+        color: #9ca3af; /* Light gray text */
+        padding-top: 4rem;
+    }
+    .container {
+        max-width: 1200px;
+        margin: auto;
+        padding: 0 1.5rem;
+    }
+    .footer-grid {
+        display: grid;
+        grid-template-columns: 2fr 1fr 1fr; /* 3 columns with the first being wider */
+        gap: 3rem;
+        padding-bottom: 3rem;
+    }
+    @media (max-width: 768px) {
+        .footer-grid {
+            grid-template-columns: 1fr; /* Stack columns on mobile */
+        }
+    }
+    .footer-column h4 {
+        color: #fff;
+        font-size: 1.125rem;
+        margin-bottom: 1.5rem;
+        font-weight: 600;
+    }
+
+    /* Branding Column */
+    .brand-column { padding-right: 2rem; }
+    .footer-logo-group { display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem; }
+    .footer-logo { height: 40px; }
+    .tagline { font-size: 0.9rem; line-height: 1.6; }
+
+    /* Links Column */
+    .footer-column ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.75rem; }
+    .footer-column a { color: #9ca3af; text-decoration: none; transition: color 0.3s ease; }
+    .footer-column a:hover { color: #fff; }
+
+    /* Socials Column */
+    .social-links { display: flex; flex-direction: column; gap: 0.75rem; }
+
+    /* Bottom Bar */
+    .footer-bottom-bar {
+        border-top: 1px solid #374151;
+        padding: 1.5rem 0;
+        text-align: center;
+    }
+    .footer-bottom-bar p {
+        margin: 0;
+        font-size: 0.875rem;
+    }
+</style>
