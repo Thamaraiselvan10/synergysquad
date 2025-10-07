@@ -3,25 +3,8 @@
 import Layout from '../layouts/Layout.astro';
 import YearAchievements from '../components/YearAchievements.astro';
 
-// We have now added data for '2024-2025' and a placeholder for '2025-2026'.
+// This data is in the correct chronological order: 2023-2024, 2024-2025, 2025-2026.
 const allYearsData = [
-    {
-        year: '2024-2025',
-        title: 'Synergy Squad 2.0: Scaling the Impact to Pre-Final Years',
-        summary: 'Following the success of version 1.0, Synergy Squad 2.0 expanded the initiative to III Year CSE students. The identification process was conducted through 7 Mock TCS CodeVita Assessments, preparing them for industry-level coding challenges and enhancing their logical thinking and problem-solving skills.',
-        weeklyActivities: [
-            { name: 'Pattern Programming Exploration Day', date: '30-09-2024' },
-            { name: 'Control Flow Mastery Day', date: '06-10-2024' },
-            { name: 'Array Optimization Master Class Day', date: '13-10-2024' },
-            { name: 'Efficient String Manipulation Day', date: '20-10-2024' },
-            { name: 'Hundred - Fold C Proficiency Test', date: '27-10-2024' },
-        ],
-        topperLists: [
-            { title: 'PATTERN PROGRAMMING TOPPERS', imageUrl: 'https://picsum.photos/seed/2425-1/400/500', toppers: ['Gayathri M (92/100)', 'Ramesh M (90/100)', 'Kanishka N (50/100)'] },
-            { title: 'CONTROL FLOW MASTERY TOPPERS', imageUrl: 'https://picsum.photos/seed/2425-2/400/500', toppers: ['Bharathi S (92/100)', 'Vigneshwaran M (88/100)', 'Kanishka N (86/100)'] },
-            { title: 'ARRAY OPTIMIZATION TOPPERS', imageUrl: 'https://picsum.photos/seed/2425-3/400/500', toppers: ['Vigneshwaran M (94/100)', 'Vigneshwaran M (92/100)', 'Kavitha S (89/100)'] },
-        ]
-    },
     {
         year: '2023-2024',
         title: 'Synergy Squad 1.0: A Strategic Java Programming Initiative',
@@ -39,6 +22,23 @@ const allYearsData = [
             { title: 'WEEK 7: MOCK WIPRO NLTH', imageUrl: 'https://picsum.photos/seed/2324-1/400/500', toppers: ['Shabari K S (100)', 'Shriyaa S V (100)'] },
             { title: 'WEEK 6: MOCK TCS NQT', imageUrl: 'https://picsum.photos/seed/2324-2/400/500', toppers: ['Anuvarshini T R (100)', 'Rasika S (100)'] },
             { title: 'WEEK 5: C MASTERCLASS', imageUrl: 'https://picsum.photos/seed/2324-3/400/500', toppers: ['Vijay K R (100)', 'Vibhav M (100)'] },
+        ]
+    },
+    {
+        year: '2024-2025',
+        title: 'Synergy Squad 2.0: Scaling the Impact to Pre-Final Years',
+        summary: 'Following the success of version 1.0, Synergy Squad 2.0 expanded the initiative to III Year CSE students. The identification process was conducted through 7 Mock TCS CodeVita Assessments, preparing them for industry-level coding challenges and enhancing their logical thinking and problem-solving skills.',
+        weeklyActivities: [
+            { name: 'Pattern Programming Exploration Day', date: '30-09-2024' },
+            { name: 'Control Flow Mastery Day', date: '06-10-2024' },
+            { name: 'Array Optimization Master Class Day', date: '13-10-2024' },
+            { name: 'Efficient String Manipulation Day', date: '20-10-2024' },
+            { name: 'Hundred - Fold C Proficiency Test', date: '27-10-2024' },
+        ],
+        topperLists: [
+            { title: 'PATTERN PROGRAMMING TOPPERS', imageUrl: 'https://picsum.photos/seed/2425-1/400/500', toppers: ['Gayathri M (92/100)', 'Ramesh M (90/100)', 'Kanishka N (50/100)'] },
+            { title: 'CONTROL FLOW MASTERY TOPPERS', imageUrl: 'https://picsum.photos/seed/2425-2/400/500', toppers: ['Bharathi S (92/100)', 'Vigneshwaran M (88/100)', 'Kanishka N (86/100)'] },
+            { title: 'ARRAY OPTIMIZATION TOPPERS', imageUrl: 'https://picsum.photos/seed/2425-3/400/500', toppers: ['Vigneshwaran M (94/100)', 'Vigneshwaran M (92/100)', 'Kavitha S (89/100)'] },
         ]
     },
     {
@@ -75,7 +75,6 @@ const allYearsData = [
 </Layout>
 
 <style>
-    /* All styles are correct and unchanged */
     .archive-header {
         text-align: center;
         padding: 4rem 1.5rem 3rem;
@@ -84,6 +83,7 @@ const allYearsData = [
     }
     .archive-header h1 { font-size: 3rem; font-weight: 900; margin: 0 0 1rem; }
     .archive-header p { font-size: 1.125rem; color: var(--text-secondary); max-width: 60ch; margin: auto; }
+
     .year-tabs {
         display: flex;
         justify-content: center;
@@ -115,20 +115,23 @@ const allYearsData = [
         color: #fff;
         border-color: var(--primary-color);
     }
+    
     .year-content-wrapper { display: none; }
     .year-content-wrapper.is-active { display: block; }
 </style>
 
 <script>
-    // The script is correct and unchanged
     document.addEventListener('DOMContentLoaded', () => {
         const tabs = document.querySelectorAll('.year-tab');
         const contentWrappers = document.querySelectorAll('.year-content-wrapper');
+
         tabs.forEach(tab => {
             tab.addEventListener('click', () => {
                 tabs.forEach(t => t.classList.remove('active'));
                 contentWrappers.forEach(c => c.classList.remove('is-active'));
+
                 tab.classList.add('active');
+
                 const targetId = tab.dataset.target;
                 const targetContent = document.getElementById(targetId);
                 if (targetContent) {
