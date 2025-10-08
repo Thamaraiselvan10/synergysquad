@@ -163,7 +163,7 @@ const achievements = [
             cardsShown += CARDS_PER_PAGE;
             updateButtonVisibility();
         });
-        viewLessBtn.addEventListener('click', () => {
+         viewLessBtn.addEventListener('click', () => {
             allCards.forEach((card, index) => {
                 if (index >= CARDS_PER_PAGE) { card.classList.add('hidden'); }
             });
