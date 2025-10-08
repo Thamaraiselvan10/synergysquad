@@ -2,113 +2,215 @@
 // src/components/Hero.astro
 ---
 <section class="hero">
-    <div class="hero-content">
-        <h1 class="title" id="hero-title"></h1>
-        
-        <p class="subtitle animate-on-load">
-            An exclusive, results-driven initiative for KIOT's top CSE talent. Through intensive training and mock company challenges, we have placed over 75% of our members in Tier-1 IT companies. We turn potential into proficiency.
-        </p>
+  <div class="hero-slideshow">
+    <div
+      class="slide current-slide"
+      style="background-image: url('https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=2070');"
+    ></div>
+    <div
+      class="slide"
+      style="background-image: url('https://images.unsplash.com/photo-1596495578065-6f16b605b0a3?q=80&w=2070');"
+    ></div>
+    <div
+      class="slide"
+      style="background-image: url('https://images.unsplash.com/photo-1517694712202-14dd9538aa97?q=80&w=2070');"
+    ></div>
+  </div>
 
-        <a href="/challenges" class="cta-button animate-on-load">View This Week's Challenge</a>
-    </div>
+  <div class="hero-overlay"></div>
+
+  <!-- Navigation Buttons -->
+  <button id="prev-slide" class="slide-nav-button prev-button" aria-label="Previous Slide">
+    &#10094;
+  </button>
+  <button id="next-slide" class="slide-nav-button next-button" aria-label="Next Slide">
+    &#10095;
+  </button>
+
+  <!-- Dot Indicators -->
+  <div class="slide-dots">
+    <span class="dot active"></span>
+    <span class="dot"></span>
+    <span class="dot"></span>
+  </div>
 </section>
 
 <style>
+  .hero {
+    position: relative;
+    overflow: hidden;
+    min-height: 70vh;
+  }
+
+  .hero-slideshow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+  }
+
+  .slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    opacity: 0;
+    transition: opacity 1.5s ease-in-out;
+  }
+
+  .slide.current-slide {
+    opacity: 1;
+  }
+
+  .hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(10, 20, 40, 0.5);
+    z-index: 1;
+  }
+
+  /* --- Elegant, Minimal Slide Buttons --- */
+  .slide-nav-button {
+    position: absolute;
+    top: 55%;
+    transform: translateY(-50%);
+    background-color: rgba(255, 255, 255, 0.08);
+    color: rgba(255, 255, 255, 0.6);
+    border: none;
+    border-radius: 50%;
+    font-size: 1.2rem;
+    padding: 0.4rem 0.6rem;
+    cursor: pointer;
+    opacity: 0.6;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(5px);
+    z-index: 3;
+  }
+
+  .slide-nav-button:hover {
+    background-color: rgba(255, 255, 255, 0.25);
+    color: #fff;
+    opacity: 1;
+    transform: translateY(-50%) scale(1.05);
+  }
+
+  .slide-nav-button.prev-button {
+    left: 0.8rem;
+  }
+
+  .slide-nav-button.next-button {
+    right: 0.8rem;
+  }
+
+  /* --- Dot Indicators --- */
+  .slide-dots {
+    position: absolute;
+    bottom: 1.2rem;
+    width: 100%;
+    text-align: center;
+    z-index: 3;
+  }
+
+  .dot {
+    cursor: pointer;
+    height: 8px;
+    width: 8px;
+    margin: 0 0.4rem;
+    background-color: rgba(255, 255, 255, 0.4);
+    border-radius: 50%;
+    display: inline-block;
+    transition: background-color 0.4s ease;
+  }
+
+  .dot.active,
+  .dot:hover {
+    background-color: #fff;
+  }
+
+  @media (max-width: 768px) {
     .hero {
-        background-image: linear-gradient(rgba(10, 20, 40, 0.75), rgba(10, 20, 40, 0.75)), url('https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=2070');
-        background-size: cover;
-        background-position: center;
-        padding: 8rem 1.5rem;
-        text-align: center;
-        color: #f8fafc;
-        display: flex;
-        align-items: center;
-        min-height: 40vh;
-    }
-    .hero-content { max-width: 75ch; margin: auto; }
-
-    /* --- START: CORRECTED HERO TITLE STYLE --- */
-    .title {
-        font-size: 3.75rem;
-        font-weight: 800;
-        margin-bottom: 1.5rem;
-        line-height: 1.2;
-        min-height: 140px;
-        
-        /* Use pure white for maximum brightness */
-        color: #FFFFFF;
-
-        /* A multi-layered shadow to create a "glow" effect */
-        text-shadow: 
-            0 2px 5px rgba(0, 0, 0, 0.8), /* A tight, dark shadow for separation */
-            0 0 15px rgba(96, 165, 250, 0.4), /* A soft blue glow */
-            0 0 30px rgba(96, 165, 250, 0.3); /* A wider, softer blue glow */
-    }
-    /* --- END: CORRECTED HERO TITLE STYLE --- */
-
-    .title::after {
-        content: '_';
-        animation: blink 0.7s infinite;
-        font-weight: 400;
-    }
-    @keyframes blink {
-        50% { opacity: 0; }
-    }
-    .title.typing-done::after {
-        display: none;
+      min-height: 50vh;
     }
 
-    .animate-on-load {
-        opacity: 0;
-        animation: fadeInUp 0.8s ease-out forwards;
-        animation-delay: 3s;
+    .slide-nav-button {
+      font-size: 1rem;
+      padding: 0.3rem 0.5rem;
     }
-    @keyframes fadeInUp {
-        from { opacity: 0; transform: translateY(20px); }
-        to { opacity: 1; transform: translateY(0); }
+
+    .dot {
+      height: 6px;
+      width: 6px;
+      margin: 0 0.3rem;
     }
-    
-    .subtitle {
-        font-size: 1.25rem;
-        line-height: 1.7;
-        margin-bottom: 2.5rem;
-        text-shadow: 0 2px 8px rgba(0, 0, 0, 0.7);
-        animation-delay: 3.2s;
-    }
-    .cta-button {
-        background-color: var(--primary-color);
-        color: #fff;
-        padding: 1rem 2rem;
-        text-decoration: none;
-        font-weight: 700;
-        border-radius: 8px;
-        transition: transform 0.3s ease, background-color 0.3s ease;
-        display: inline-block;
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-        animation-delay: 3.4s;
-    }
-    .cta-button:hover {
-        background-color: var(--primary-color-hover);
-        transform: translateY(-3px);
-    }
+  }
 </style>
 
 <script>
-    document.addEventListener('DOMContentLoaded', () => {
-        const textToType = "Bridge the Gap Between Code and Career";
-        const titleElement = document.getElementById('hero-title');
-        let i = 0;
+  document.addEventListener('DOMContentLoaded', () => {
+    const slides = document.querySelectorAll('.slide');
+    const dots = document.querySelectorAll('.dot');
+    const prevButton = document.getElementById('prev-slide');
+    const nextButton = document.getElementById('next-slide');
 
-        function typeWriter() {
-            if (i < textToType.length) {
-                titleElement.innerHTML += textToType.charAt(i);
-                i++;
-                setTimeout(typeWriter, 80);
-            } else {
-                titleElement.classList.add('typing-done');
-            }
-        }
-        
-        typeWriter();
+    let currentSlideIndex = 0;
+    const slideIntervalTime = 4000; // 4 seconds per image
+    let slideInterval;
+
+    function showSlide(index) {
+      if (index >= slides.length) index = 0;
+      else if (index < 0) index = slides.length - 1;
+
+      slides.forEach((slide) => slide.classList.remove('current-slide'));
+      dots.forEach((dot) => dot.classList.remove('active'));
+
+      slides[index].classList.add('current-slide');
+      dots[index].classList.add('active');
+      currentSlideIndex = index;
+    }
+
+    function nextSlide() {
+      showSlide(currentSlideIndex + 1);
+    }
+
+    function prevSlide() {
+      showSlide(currentSlideIndex - 1);
+    }
+
+    nextButton.addEventListener('click', () => {
+      nextSlide();
+      resetInterval();
     });
+
+    prevButton.addEventListener('click', () => {
+      prevSlide();
+      resetInterval();
+    });
+
+    dots.forEach((dot, index) => {
+      dot.addEventListener('click', () => {
+        showSlide(index);
+        resetInterval();
+      });
+    });
+
+    function startAutoSlide() {
+      slideInterval = setInterval(nextSlide, slideIntervalTime);
+    }
+
+    function resetInterval() {
+      clearInterval(slideInterval);
+      startAutoSlide();
+    }
+
+    showSlide(currentSlideIndex);
+    startAutoSlide();
+  });
 </script>
