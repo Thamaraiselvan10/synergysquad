@@ -1,31 +1,10 @@
 ---
 // src/components/UpcomingChallenges.astro
-
 const challenges = [
-    {
-        title: 'National level coding competition',
-        description: ' A national innovation marathon where the sharpest minds in technology unite to solve real-world challenges. Go beyond competition—Code. Create. Conquer.',
-        posterUrl: '/upcoming/codeathon.jpeg',
-        status: 'current'
-    },
-    {
-        title: 'CODE-A-THAN Final round',
-        description: 'The ultimate 8-hour coding challenge. Compete for the national title by solving complex algorithmic problems with speed and flawless execution',
-        posterUrl: '/upcoming/codeathon.jpeg',
-        status: 'upcoming'
-    },
-    {
-        title: 'Mock Wipro NLTH Challenge',
-        description: 'Test your skills in a simulated environment that mirrors the actual Wipro National Level Talent Hunt.',
-        posterUrl: 'https://images.unsplash.com/photo-1550063873-ab792950096b?q=80&w=1887',
-        status: 'upcoming'
-    },
-    {
-        title: 'Week 1 - Pattern Day',
-        description: 'The foundational challenge that kicked off our weekly series, focusing on complex pattern printing.',
-        posterUrl: 'https://images.unsplash.com/photo-1526498460520-4c246339dcc4?q=80&w=2070',
-        status: 'completed'
-    }
+    { title: 'National level coding competition', description: ' A national innovation marathon where sharp minds unite to solve real-world challenges...', posterUrl: '/upcoming/codeathon.jpeg', status: 'current' },
+    { title: 'CODE-A-THAN Final round', description: 'The ultimate 8-hour coding challenge. Compete for the national title...', posterUrl: '/upcoming/codeathon.jpeg', status: 'upcoming' },
+    { title: 'Mock Wipro NLTH Challenge', description: 'Test your skills in a simulated environment that mirrors the actual Wipro NLTH.', posterUrl: '/events-image/week-7.jpeg', status: 'upcoming' },
+    { title: 'Week 1 - Pattern Day', description: 'The foundational challenge that kicked off our weekly series.', posterUrl: '/events-image/week-1.jpeg', status: 'completed' }
 ];
 ---
 <link rel="stylesheet" href="node_modules/@splidejs/splide/dist/css/splide.min.css">
@@ -33,7 +12,6 @@ const challenges = [
 <section class="upcoming-challenges fade-in-up">
     <div class="container">
         <h2 class="section-title">Challenges Updates</h2>
-        
         <div id="challenges-slider" class="splide">
             <div class="splide__track">
                 <ul class="splide__list">
@@ -42,18 +20,21 @@ const challenges = [
                             <div class="challenge-card">
                                 <div class="poster-container">
                                     <img src={challenge.posterUrl} alt={`Poster for ${challenge.title}`} class="challenge-poster" />
+                                    {/* Tag for Mobile */}
+                                    <div class:list={['status-tag', 'mobile-tag', challenge.status]}>
+                                        <span class="status-dot"></span>
+                                        <span class="status-text">{challenge.status.toUpperCase()}</span>
+                                    </div>
                                 </div>
                                 <div class="card-content">
                                     <div class="card-text">
                                         <h3>{challenge.title}</h3>
                                         <p>{challenge.description}</p>
                                     </div>
-                                    
-                                    <div class:list={['status-tag', challenge.status]}>
+                                    {/* Tag for Desktop */}
+                                    <div class:list={['status-tag', 'desktop-tag', challenge.status]}>
                                         <span class="status-dot"></span>
-                                        <span class="status-text">
-                                            {challenge.status.toUpperCase()} CHALLENGE
-                                        </span>
+                                        <span class="status-text">{challenge.status.toUpperCase()}</span>
                                     </div>
                                 </div>
                             </div>
@@ -66,20 +47,18 @@ const challenges = [
 </section>
 
 <style>
-    .upcoming-challenges { padding: 5rem 1.5rem; overflow: hidden; }
+    .upcoming-challenges { padding: 4rem 1.5rem; overflow: hidden; }
     .container { max-width: 1200px; margin: auto; }
-
-    /* --- START: NEW GLOWING TITLE STYLE --- */
+    
+    /* --- START: UPDATED TITLE STYLE WITH GLOW ANIMATION --- */
     .section-title {
         font-size: 2.5rem;
         font-weight: 800;
         text-align: center;
         margin-bottom: 3rem;
         color: var(--primary-color);
-        /* Animation definition */
         animation: pulse-glow 2.5s infinite ease-in-out;
     }
-
     @keyframes pulse-glow {
         0%, 100% {
             text-shadow: 0 0 10px rgba(30, 64, 175, 0.5), 0 0 20px rgba(30, 64, 175, 0.3);
@@ -88,40 +67,65 @@ const challenges = [
             text-shadow: 0 0 20px rgba(30, 64, 175, 0.8), 0 0 40px rgba(30, 64, 175, 0.5);
         }
     }
-    /* --- END: NEW GLOWING TITLE STYLE --- */
-    
+    /* --- END: UPDATED TITLE STYLE --- */
+
     .splide__slide { padding: 0.5rem; }
-    .challenge-card { background-color: #fff; border-radius: 12px; border: 1px solid var(--border-color); box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05), 0 2px 4px -2px rgb(0 0 0 / 0.05); display: flex; overflow: hidden; height: 100%; }
-    .poster-container { flex: 0 0 200px; }
-    .challenge-poster { width: 100%; height: 100%; object-fit: cover; }
-    .card-content { padding: 1.5rem; display: flex; flex-direction: column; justify-content: space-between; }
+    .challenge-card { background-color: #fff; border-radius: 12px; border: 1px solid var(--border-color); box-shadow: 0 4px 12px rgba(0,0,0,0.05); overflow: hidden; height: 100%; transition: transform 0.3s ease, box-shadow 0.3s ease; }
+    .challenge-card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.07); }
+    .poster-container { position: relative; }
+    .challenge-poster { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .card-content { padding: 1.5rem; }
     .card-content h3 { margin-top: 0; font-size: 1.25rem; font-weight: 700; }
     .card-content p { color: var(--text-secondary); line-height: 1.6; margin-bottom: 0; }
-    .status-tag { display: flex; align-items: center; gap: 0.5rem; margin-top: 1rem; }
+
+    /* Status Tag Styles */
+    .status-tag { display: flex; align-items: center; gap: 0.5rem; }
     .status-dot { width: 10px; height: 10px; border-radius: 50%; }
-    .status-text { font-size: 0.8rem; font-weight: 700; letter-spacing: 0.05em; }
-    .status-tag.current .status-dot { background-color: #10b981; box-shadow: 0 0 8px #10b981, 0 0 12px #10b981; animation: glow-animation 2s infinite ease-in-out; }
+    .status-text { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; }
+    .status-tag.current .status-dot { background-color: #10b981; box-shadow: 0 0 8px #10b981; animation: glow-animation 2s infinite ease-in-out; }
     .status-tag.current .status-text { color: #059669; }
-    .status-tag.upcoming .status-dot { background-color: #f59e0b; box-shadow: 0 0 8px #f59e0b, 0 0 12px #f59e0b; animation: glow-animation 2s infinite ease-in-out; }
+    .status-tag.upcoming .status-dot { background-color: #f59e0b; box-shadow: 0 0 8px #f59e0b; animation: glow-animation 2s infinite ease-in-out; }
     .status-tag.upcoming .status-text { color: #b45309; }
     .status-tag.completed .status-dot { background-color: #9ca3af; }
     .status-tag.completed .status-text { color: #6b7280; }
     @keyframes glow-animation { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+
+    /* Responsive Layout */
+    @media (min-width: 641px) {
+        .challenge-card { display: flex; }
+        .poster-container { flex: 0 0 220px; }
+        .card-content { display: flex; flex-direction: column; justify-content: space-between; }
+        .mobile-tag { display: none; }
+        .desktop-tag { margin-top: 1rem; }
+    }
+    @media (max-width: 640px) {
+        .challenge-card { display: block; }
+        .challenge-poster { aspect-ratio: 4 / 5; }
+        .desktop-tag { display: none; }
+        .mobile-tag {
+            position: absolute; top: 1rem; right: 1rem;
+            background-color: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(5px);
+            padding: 0.35rem 0.75rem;
+            border-radius: 9999px;
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+    }
+
+    /* Unchanged styles */
     .splide__arrow { background-color: var(--primary-color); }
     .splide__arrow svg { fill: white; }
     .splide__pagination__page.is-active { background-color: var(--primary-color); }
-
     .fade-in-up { opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease-out, transform 0.6s ease-out; }
     .fade-in-up.is-visible { opacity: 1; transform: translateY(0); }
 </style>
 
 <script>
     import Splide from '@splidejs/splide';
-
     document.addEventListener('DOMContentLoaded', () => {
         const splide = new Splide('#challenges-slider', {
-            type: 'loop', perPage: 2, perMove: 1, gap: '1rem', pagination: true,
-            arrows: true, breakpoints: { 1024: { perPage: 2, }, 768: { perPage: 1, }, },
+            type: 'loop', perPage: 2, perMove: 1, gap: '2rem', pagination: true,
+            arrows: true, breakpoints: { 1024: { perPage: 2 }, 768: { perPage: 1 } },
         });
         splide.mount();
 
@@ -134,8 +138,6 @@ const challenges = [
                 }
             });
         }, { threshold: 0.1 });
-        elementsToAnimate.forEach(element => {
-            observer.observe(element);
-        });
+        elementsToAnimate.forEach(element => observer.observe(element));
     });
 </script>
