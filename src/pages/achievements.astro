@@ -3,7 +3,7 @@
 import Layout from '../layouts/Layout.astro';
 import YearAchievements from '../components/YearAchievements.astro';
 
-// Data is in the correct chronological order: 2023-2024, 2024-2025, 2025-2026.
+// --- THIS IS THE FULL, DETAILED, AND CORRECTLY ORDERED DATA SET ---
 const allYearsData = [
     {
         year: '2023-2024',
@@ -17,11 +17,16 @@ const allYearsData = [
             { name: 'C Programming Master Class Day', date: '18-02-2024' },
             { name: 'Mock TCS Ninja NQT Challenge Day', date: '25-02-2024' },
             { name: 'Mock Wipro NLTH Challenge Day', date: '10-03-2024' },
+            { name: 'Mock Pratian Technologies Challenge Day', date: '24-03-2024' },
         ],
         topperLists: [
-            { title: 'WEEK 7: MOCK WIPRO NLTH', imageUrl: '/events-image/week-7.jpeg', toppers: ['Shabari K S (100)', 'Shriyaa S V (100)'] },
-            { title: 'WEEK 6: MOCK TCS NQT', imageUrl: '/events-image/week-6.jpeg', toppers: ['Anuvarshini T R (100)', 'Rasika S (100)'] },
-            { title: 'WEEK 5: C MASTERCLASS', imageUrl: '/events-image/week-5.jpeg', toppers: ['Vijay K R (100)', 'Vibhav M (100)'] },
+            { title: 'WEEK 7: MOCK WIPRO NLTH', imageUrl: '/events-image/week-7.jpeg', toppers: ['Shabari K S (100)', 'Shriyaa S V (100)', 'Selva Ganapathi (100)'] },
+            { title: 'WEEK 6: MOCK TCS NQT', imageUrl: '/events-image/week-6.jpeg', toppers: ['Anuvarshini T R (100)', 'Rasika S (100)', 'Gayathri R (100)'] },
+            { title: 'WEEK 5: C MASTERCLASS', imageUrl: '/events-image/week-5.jpeg', toppers: ['Vijay K R (100)', 'Vibhav M (100)', 'Yuvasree M (100)'] },
+            { title: 'WEEK 4: C QUIZATHON', imageUrl: '/events-image/week-4.jpeg', toppers: ['Jeslin Maria Jacob (83)', 'Anuvarshini T R (64)', 'Arunthathi (51)'] },
+            { title: 'WEEK 3: MASTERING IN STRINGS', imageUrl: '/events-image/week-3.jpeg', toppers: ['Vibav Mahendran (94)', 'Shriyaa S V (80)', 'Saranya A (73)'] },
+            { title: 'WEEK 2: MASTERING IN ARRAY', imageUrl: '/events-image/week-2.jpeg', toppers: ['Jeevanandhan (100)', 'Shriyaa S V (100)', 'Vijay K R (100)'] },
+            { title: 'WEEK 1: PATTERN DAY', imageUrl: '/events-image/week-1.jpeg', toppers: ['Vijay K R (100)', 'Anuvarshini T (92)', 'Keerthana D (92)'] },
         ]
     },
     {
@@ -83,7 +88,6 @@ const allYearsData = [
     }
     .archive-header h1 { font-size: 3rem; font-weight: 900; margin: 0 0 1rem; }
     .archive-header p { font-size: 1.125rem; color: var(--text-secondary); max-width: 60ch; margin: auto; }
-
     .year-tabs {
         display: flex;
         justify-content: center;
@@ -128,10 +132,8 @@ const allYearsData = [
             tab.addEventListener('click', () => {
                 tabs.forEach(t => t.classList.remove('active'));
                 contentWrappers.forEach(c => c.classList.remove('is-active'));
-
                 tab.classList.add('active');
-
-                const targetId = tab.allYearsData.target;
+                const targetId = tab.dataset.target;
                 const targetContent = document.getElementById(targetId);
                 if (targetContent) {
                     targetContent.classList.add('is-active');
