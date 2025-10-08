@@ -2,9 +2,9 @@
 // src/pages/achievements.astro
 import Layout from '../layouts/Layout.astro';
 import Year2023_2024 from '../components/Year2023_2024.astro';
-// We'll create and import other custom year components here later
+import Year2024_2025 from '../components/Year2024_2025.astro'; // <-- Correctly imported
 
-// Full data for the 2023-2024 component
+// Data for 2023-2024
 const yearData_2023_2024 = {
     weeklyActivities: [
         { name: 'Pattern Day', date: '21-01-2024' },
@@ -20,13 +20,28 @@ const yearData_2023_2024 = {
         { title: 'WEEK 8: MOCK PRATIAN', imageUrl: '/events-image/week-8.jpeg', toppers: ['Shabari K S (100)', 'Shriyaa S V (100)'] },
         { title: 'WEEK 7: MOCK WIPRO', imageUrl: '/events-image/week-7.jpeg', toppers: ['Anuvarshini T R (100)', 'Rasika S (100)'] },
         { title: 'WEEK 6: MOCK TCS NQT', imageUrl: '/events-image/week-6.jpeg', toppers: ['Vijay K R (100)', 'Vibhav M (100)'] },
-        { title: 'WEEK 5: C MASTERCLASS', imageUrl: '/events-image/week-5.jpeg', toppers: ['Vijay K R (100)', 'Vibhav M (100)']},
+        { title: 'WEEK 5: C MASTERCLASS', imageUrl: '/events-image/week-5.jpeg', toppers: ['Vijay K R (100)', 'Vibhav M (100)'] },
         { title: 'WEEK 4: C QUIZATHON', imageUrl: '/events-image/week-4.jpeg', toppers: ['Jeslin Maria Jacob (83)', 'Subasri C (66)'] },
         { title: 'WEEK 3: MASTERING STRINGS', imageUrl: '/events-image/week-3.jpeg', toppers: ['Vibav Mahendran (94)', 'Shriyaa S V (80)'] },
     ]
 };
----
 
+// Data for 2024-2025
+const yearData_2024_2025 = {
+    weeklyActivities: [
+        { name: 'Pattern Programming Exploration Day', date: '30-09-2024' },
+        { name: 'Control Flow Mastery Day', date: '06-10-2024' },
+        { name: 'Array Optimization Master Class Day', date: '13-10-2024' },
+        { name: 'Efficient String Manipulation Day', date: '20-10-2024' },
+        { name: 'Hundred - Fold C Proficiency Test', date: '27-10-2024' },
+    ],
+    topperLists: [
+        { title: 'PATTERN PROGRAMMING TOPPERS', imageUrl: '/events-image/week-1.jpeg', toppers: ['Gayathri M (92/100)', 'Ramesh M (90/100)'] },
+        { title: 'CONTROL FLOW MASTERY TOPPERS', imageUrl: '/events-image/week-2.jpeg', toppers: ['Bharathi S (92/100)', 'Vigneshwaran M (88/100)'] },
+        { title: 'ARRAY OPTIMIZATION TOPPERS', imageUrl: '/events-image/week-3.jpeg', toppers: ['Vigneshwaran M (94/100)', 'Kavitha S (89/100)'] },
+    ]
+};
+---
 <Layout title="Achievements Archive - Synergy Squad">
     <div class="archive-header">
         <h1>Achievements Archive</h1>
@@ -44,16 +59,14 @@ const yearData_2023_2024 = {
         <div class="year-content-wrapper is-active" id="year-2023-2024">
             <Year2023_2024 data={yearData_2023_2024} />
         </div>
-        <!-- Year 2024-2025 Content (Placeholder) -->
+        <!-- Year 2024-2025 Content -->
         <div class="year-content-wrapper" id="year-2024-2025">
-            <div class="placeholder-container">
-                <p>Data for the 2024-2025 academic year will be displayed here.</p>
-            </div>
+            <Year2024_2025 data={yearData_2024_2025} />
         </div>
         <!-- Year 2025-2026 Content (Placeholder) -->
         <div class="year-content-wrapper" id="year-2025-2026">
              <div class="placeholder-container">
-                <p>Data for the 2025-2026 academic year will be displayed here.</p>
+                <p>Data for the 2025-2026 academic year will be announced soon.</p>
             </div>
         </div>
     </main>
