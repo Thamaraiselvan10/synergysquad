@@ -21,7 +21,7 @@ const { data } = Astro.props;
 
     {data.weeklyActivities.length > 0 &&
         <div class="section-block">
-            <h3>Weekly Activity Summary</h3>
+            <h3 style="text-align: center;">Weekly Activity Summary</h3>
             <div class="table-container">
                 <div class="table-header">
                     <div>Activity Name</div>
@@ -39,7 +39,7 @@ const { data } = Astro.props;
 
     {data.topperLists.length > 0 &&
         <div class="section-block">
-            <h3>Activity Execution Reports</h3>
+            <h3 style="text-align: center;">Activity Execution Reports</h3>
             <div class="achievements-grid">
                 {data.topperLists.map(achievement => (
                     <div class="achievement-card">
