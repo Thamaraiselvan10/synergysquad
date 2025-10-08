@@ -49,7 +49,7 @@ const testimonials = [
     .section-separator { max-width: 1400px; margin: 0 auto; height: 1px; background-color: var(--border-color); }
     .testimonials { padding: 6rem 1.5rem; background-color: #ffffff; }
     .container { max-width: 1400px; /* Wider container for 3 cards */ margin: auto; }
-    .section-header { text-align: center; margin-bottom: 4rem; }
+    .section-header { text-align: center; margin-bottom: 0.5rem; }
     .section-title { font-size: 2.75rem; font-weight: 900; margin-bottom: 1rem; position: relative; display: inline-block; }
     .section-title::after { content: ''; position: absolute; bottom: -0.5rem; left: 50%; transform: translateX(-50%); height: 5px; width: 0; background: linear-gradient(90deg, var(--primary-color), #6366f1); border-radius: 5px; animation: grow-underline 1s ease-out forwards; animation-delay: 0.5s; }
     @keyframes grow-underline { to { width: 100px; } }
@@ -57,7 +57,7 @@ const testimonials = [
 
     /* --- START: NEW AND IMPROVED CARD & SLIDER STYLES --- */
     .splide { padding: 1rem 0 2.5rem; }
-    .splide__slide { padding: 0.5rem; } /* Give cards some breathing room */
+    .splide__slide { padding: 1.8rem; } /* Give cards some breathing room */
 
     .testimonial-card {
         background-color: #fff;
@@ -65,7 +65,7 @@ const testimonials = [
         border-radius: 12px;
         border: 1px solid var(--border-color);
         box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-        height: 100%;
+        height: 80%;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
