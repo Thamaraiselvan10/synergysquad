@@ -2,11 +2,11 @@
 // src/components/Testimonials.astro
 
 const testimonials = [
-    { quote: "This weekly programming day challenge is a good initiative...", author: "Anuvarshini T R", class: "Topper, CSE-A", imageUrl: "https://i.pravatar.cc/150?u=AnuvarshiniTR" },
-    { quote: "Its really good to solve new pattern programs...", author: "Vijay K R", class: "Topper, CSE-C", imageUrl: "https://i.pravatar.cc/150?u=VijayKR" },
-    { quote: "Arrays are crucial in competitive programming...", author: "Jeevanandhan J", class: "Topper, CSE-A", imageUrl: "https://i.pravatar.cc/150?u=JeevanandhanJ" },
-    { quote: "This week's challenge helped me identify my weaknesses...", author: "Karthikeyan S", class: "Topper, CSE-B", imageUrl: "https://i.pravatar.cc/150?u=KarthikeyanS" },
-    { quote: "This MCQ assessment really makes me want to debug the code...", author: "Kiruthika V M", class: "Topper, CSE-B", imageUrl: "https://i.pravatar.cc/150?u=KiruthikaVM" }
+    { quote: "This weekly programming day challenge is a good initiative...", author: "Anuvarshini T R", class: "Topper, CSE-A", imageUrl: "/images/testimonial-avatar.svg" },
+    { quote: "Its really good to solve new pattern programs...", author: "Vijay K R", class: "Topper, CSE-C", imageUrl: "/images/testimonial-avatar.svg" },
+    { quote: "Arrays are crucial in competitive programming...", author: "Jeevanandhan J", class: "Topper, CSE-A", imageUrl: "/images/testimonial-avatar.svg" },
+    { quote: "This week's challenge helped me identify my weaknesses...", author: "Karthikeyan S", class: "Topper, CSE-B", imageUrl: "/images/testimonial-avatar.svg" },
+    { quote: "This MCQ assessment really makes me want to debug the code...", author: "Kiruthika V M", class: "Topper, CSE-B", imageUrl: "/images/testimonial-avatar.svg" }
 ];
 ---
 
@@ -94,7 +94,15 @@ const testimonials = [
         z-index: 2;
     }
     .author-info { display: flex; align-items: center; gap: 1rem; position: relative; z-index: 2; }
-    .author-image { width: 50px; height: 50px; border-radius: 50%; object-fit: cover; border: 2px solid var(--border-color); }
+    .author-image {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 2px solid var(--border-color);
+        background-color: #f0f4f8; /* Light background for the SVG */
+        padding: 5px; /* Add padding to the SVG icon */
+    }
     .author-details { display: flex; flex-direction: column; }
     .author-name { font-weight: 700; color: var(--text-primary); }
     .author-class { font-size: 0.9rem; color: var(--text-secondary); }
@@ -109,30 +117,30 @@ const testimonials = [
     .fade-in-up.is-visible { opacity: 1; transform: translateY(0); }
     #testimonials-slider.fade-in-up { transition-delay: 0.2s; }
 
-    /* --- THIS IS THE UPDATE FOR MOBILE VIEW --- */
+    /* Mobile View Adjustments */
     @media (max-width: 640px) {
         .testimonials {
-            padding: 4rem 1.5rem; /* Reduced vertical padding */
+            padding: 4rem 1.5rem;
         }
         .section-title {
-            font-size: 2.25rem; /* Smaller title for mobile */
+            font-size: 2.25rem;
         }
         .section-subtitle {
-            font-size: 1rem; /* Smaller subtitle */
+            font-size: 1rem;
         }
         .splide__slide {
-            padding: 0.5rem; /* Tighter padding around the card */
+            padding: 0.5rem;
         }
         .testimonial-card {
-            padding: 1.5rem; /* Less padding inside the card */
+            padding: 1.5rem;
         }
         .testimonial-card::before {
-            font-size: 4rem; /* Slightly smaller quote icon */
+            font-size: 4rem;
             top: 1rem;
             left: 1rem;
         }
         .quote {
-            font-size: 1rem; /* Slightly smaller quote text */
+            font-size: 1rem;
         }
     }
 </style>
