@@ -1,20 +1,23 @@
 ---
 // src/components/Hero.astro
-// The carousel data is no longer needed.
 ---
 
 <section class="hero">
     <div class="video-background">
-        <video autoplay loop muted playsinline >
+        <video autoplay loop muted playsinline poster="/images/hero-fallback.jpg">
             <!-- 
-                IMPORTANT: Place your video in the `public/videos/` folder.
-                If the folder doesn't exist, create it.
+                HOW THIS WORKS:
+                The browser reads these <source> tags from top to bottom.
+                1. It checks if the screen is 768px wide or less. If yes, it uses the mobile video and stops.
+                2. If not, it moves to the next source, which is the desktop video.
             -->
+            <source src="/videos/ss-video-mobile.mp4" type="video/mp4" media="(max-width: 768px)">
             <source src="/videos/ss-video.mp4" type="video/mp4">
             Your browser does not support the video tag.
         </video>
     </div>
-   
+
+    <!-- This overlay makes the text readable over the video -->
    
 </section>
 
@@ -46,7 +49,7 @@
         object-fit: cover; /* Ensures video covers the area without distortion */
     }
 
-   
+ 
 
     .hero-content {
         position: relative;
@@ -101,5 +104,3 @@
         }
     }
 </style>
-
-<!-- The script tag is no longer needed for a video background and has been removed -->
