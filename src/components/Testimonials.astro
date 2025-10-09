@@ -45,20 +45,17 @@ const testimonials = [
 </section>
 
 <style>
-    /* Section and Header styles are unchanged */
+    /* Your exact styles are preserved */
     .section-separator { max-width: 1400px; margin: 0 auto; height: 1px; background-color: var(--border-color); }
     .testimonials { padding: 6rem 1.5rem; background-color: #ffffff; }
-    .container { max-width: 1400px; /* Wider container for 3 cards */ margin: auto; }
+    .container { max-width: 1400px; margin: auto; }
     .section-header { text-align: center; margin-bottom: 0.5rem; }
     .section-title { font-size: 2.75rem; font-weight: 900; margin-bottom: 1rem; position: relative; display: inline-block; }
     .section-title::after { content: ''; position: absolute; bottom: -0.5rem; left: 50%; transform: translateX(-50%); height: 5px; width: 0; background: linear-gradient(90deg, var(--primary-color), #6366f1); border-radius: 5px; animation: grow-underline 1s ease-out forwards; animation-delay: 0.5s; }
     @keyframes grow-underline { to { width: 100px; } }
     .section-subtitle { max-width: 65ch; margin: auto; font-size: 1.125rem; color: var(--text-secondary); line-height: 1.8; }
-
-    /* --- START: NEW AND IMPROVED CARD & SLIDER STYLES --- */
     .splide { padding: 1rem 0 2.5rem; }
-    .splide__slide { padding: 1.8rem; } /* Give cards some breathing room */
-
+    .splide__slide { padding: 1.8rem; }
     .testimonial-card {
         background-color: #fff;
         padding: 2rem;
@@ -76,8 +73,6 @@ const testimonials = [
         transform: translateY(-5px);
         box-shadow: 0 10px 20px rgba(0,0,0,0.07);
     }
-    
-    /* The visible quote icon */
     .testimonial-card::before {
         content: '“';
         position: absolute;
@@ -85,14 +80,13 @@ const testimonials = [
         left: 1.5rem;
         font-size: 5rem;
         font-weight: 900;
-        color: var(--primary-color); /* Use brand color */
-        opacity: 0.1; /* Make it subtle */
+        color: var(--primary-color);
+        opacity: 0.1;
         z-index: 1;
         line-height: 1;
     }
-
     .quote {
-        font-size: 1.125rem; /* Slightly smaller for better fit */
+        font-size: 1.125rem;
         font-style: italic;
         color: var(--text-primary);
         line-height: 1.7;
@@ -105,19 +99,19 @@ const testimonials = [
     .author-details { display: flex; flex-direction: column; }
     .author-name { font-weight: 700; color: var(--text-primary); }
     .author-class { font-size: 0.9rem; color: var(--text-secondary); }
-
     .splide__pagination { bottom: 0; }
     .splide__pagination__page { background-color: #cbd5e1; }
     .splide__pagination__page.is-active { background-color: var(--primary-color); transform: scale(1.2); }
-    
     .fade-in-up { opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease-out, transform 0.6s ease-out; }
     .fade-in-up.is-visible { opacity: 1; transform: translateY(0); }
     #testimonials-slider.fade-in-up { transition-delay: 0.2s; }
-    /* --- END: NEW AND IMPROVED STYLES --- */
 </style>
 
 <script>
     import Splide from '@splidejs/splide';
+    // --- THIS IS THE ONLY CHANGE ---
+    // This import ensures the slider's CSS is included in the final build
+    import '@splidejs/splide/dist/css/splide.min.css';
 
     document.addEventListener('DOMContentLoaded', () => {
         const elements = document.querySelectorAll('.fade-in-up');
@@ -132,21 +126,21 @@ const testimonials = [
         elements.forEach(element => observer.observe(element));
         
         const testimonialsSlider = new Splide('#testimonials-slider', {
-            type: 'loop', // Loop back to the beginning
-            perPage: 3,   // Show 3 slides on desktop
+            type: 'loop',
+            perPage: 3,
             gap: '2rem',
             arrows: false,
             pagination: true,
-            autoplay: true, // Keep autoplay enabled
-            interval: 4000, // Slightly faster interval
-            pauseOnHover: true, // Pause when the user hovers over the slider
+            autoplay: true,
+            interval: 4000,
+            pauseOnHover: true,
             resetProgress: false,
             breakpoints: {
                 1024: {
-                    perPage: 2, // 2 slides on tablet
+                    perPage: 2,
                 },
                 640: {
-                    perPage: 1, // 1 slide on mobile
+                    perPage: 1,
                 },
             },
         });
