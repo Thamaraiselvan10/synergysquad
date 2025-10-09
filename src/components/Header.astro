@@ -86,11 +86,9 @@ const navLinks = [
     @media (max-width: 820px) {
         .desktop-nav { display: none; }
         .mobile-menu-btn {
-            /* --- THIS IS THE FIX --- */
             position: fixed;
             top: 1.4rem;
             right: 1.5rem;
-            /* ----------------------- */
             display: flex; flex-direction: column; justify-content: space-around;
             width: 30px; height: 24px; background: transparent; border: none; cursor: pointer;
             padding: 0; z-index: 60;
@@ -121,12 +119,24 @@ const navLinks = [
         }
         .mobile-nav-overlay nav a.active { color: var(--primary-color); }
         .club-name { display: none; }
+
+        .close-menu-btn {
+            position: absolute;
+            top: 1.2rem;
+            right: 1.5rem;
+            font-size: 2rem;
+            background: none;
+            border: none;
+            color: var(--text-primary);
+            cursor: pointer;
+        }
     }
 </style>
 
 <script>
     const menuBtn = document.getElementById('mobile-menu-btn');
     const overlay = document.getElementById('mobile-nav-overlay');
+    const closeBtn = document.getElementById('close-menu-btn'); // ✅ Added
 
     const toggleMenu = () => {
         const isExpanded = menuBtn.getAttribute('aria-expanded') === 'true';
@@ -136,10 +146,10 @@ const navLinks = [
     };
 
     menuBtn.addEventListener('click', toggleMenu);
+    closeBtn.addEventListener('click', toggleMenu); // ✅ Added
 
-    // This handles Astro's page transitions
+    // Handles Astro page transitions
     document.addEventListener('astro:after-swap', () => {
-        // Close menu on page change, if it's open
         if (overlay.classList.contains('open')) {
             menuBtn.setAttribute('aria-expanded', 'false');
             overlay.classList.remove('open');
