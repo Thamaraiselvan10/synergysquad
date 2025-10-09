@@ -56,13 +56,11 @@ const testimonials = [
     .section-subtitle { max-width: 65ch; margin: auto; font-size: 1.125rem; color: var(--text-secondary); line-height: 1.8; }
 
     /* Card & Slider Styles */
-    .splide { padding: 1rem 0 2.5rem; }
-    .splide__slide { padding: 1rem; }
-    .splide { padding: 1rem 0 2.5rem; }
+    .splide { padding: 1rem 0; }
     .splide__slide { padding: 1.8rem; }
     .testimonial-card {
         background-color: #fff;
-        padding: 2rem;
+        padding: 0.8rem 2rem;
         border-radius: 12px;
         border: 1px solid var(--border-color);
         box-shadow: 0 4px 12px rgba(0,0,0,0.05);
@@ -148,6 +146,19 @@ const testimonials = [
         .quote {
             font-size: 1rem;
         }
+        .testimonial-card {
+        background-color: #fff;
+        padding: 1.5rem 2rem;
+        border-radius: 12px;
+        border: 1px solid var(--border-color);
+        box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        position: relative;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
     }
     .splide__pagination { bottom: 0; }
     .splide__pagination__page { background-color: #cbd5e1; }
@@ -178,7 +189,7 @@ const testimonials = [
         const testimonialsSlider = new Splide('#testimonials-slider', {
             type: 'loop',
             perPage: 3,
-            gap: '2rem',
+            gap: '5rem',
             arrows: false,
             pagination: true,
             autoplay: true,
@@ -198,4 +209,5 @@ const testimonials = [
         });
         testimonialsSlider.mount();
     });
+    
 </script>
