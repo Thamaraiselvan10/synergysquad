@@ -2,7 +2,8 @@
 // src/pages/achievements.astro
 import Layout from '../layouts/Layout.astro';
 import Year2023_2024 from '../components/Year2023_2024.astro';
-import Year2024_2025 from '../components/Year2024_2025.astro'; // <-- Correctly imported
+import Year2024_2025 from '../components/Year2024_2025.astro';
+import Year2025_2026 from '../components/Year2025_2026.astro';
 
 // Data for 2023-2024
 const yearData_2023_2024 = {
@@ -38,7 +39,26 @@ const yearData_2024_2025 = {
     topperLists: [
         { title: 'PATTERN PROGRAMMING TOPPERS', imageUrl: '/events-image/week-1.jpeg', toppers: ['Gayathri M (92/100)', 'Ramesh M (90/100)'] },
         { title: 'CONTROL FLOW MASTERY TOPPERS', imageUrl: '/events-image/week-2.jpeg', toppers: ['Bharathi S (92/100)', 'Vigneshwaran M (88/100)'] },
-        { title: 'ARRAY OPTIMIZATION TOPPERS', imageUrl: '/events-image/week-3.jpeg', toppers: ['Vigneshwaran M (94/100)', 'Kavitha S (89/100)'] },
+    ]
+};
+
+// Data for 2025-2026
+const yearData_2025_2026 = {
+    weeklyActivities: [
+        { name: 'Pattern Play Day', date: '10-08-2025' },
+        { name: 'Array Mastery Quest Day', date: '17-08-2025' },
+        { name: 'String Hacker\'s Day', date: '24-08-2025' },
+        { name: 'Century in C Day', date: '31-08-2025' },
+        { name: 'OOPS Explore Day', date: '07-09-2025' },
+        { name: 'TCS Mock Sprint Day', date: '14-09-2025' },
+        { name: 'Wipro Warriors: NLTH Mock Day', date: '21-09-2025' },
+        { name: 'Pratian Prep Battle Day', date: '28-09-2025' },
+    ],
+    // --- THIS IS THE FIX ---
+    topperLists: [
+        { title: 'WEEK 1: PATTERN PLAY', imageUrl: '/events-image/week-1.jpeg', toppers: ['Topper Name 1', 'Topper Name 2'] },
+        { title: 'WEEK 2: ARRAY MASTERY', imageUrl: '/events-image/week-2.jpeg', toppers: ['Topper Name 3', 'Topper Name 4'] },
+        { title: 'WEEK 3: STRING HACKER', imageUrl: '/events-image/week-3.jpeg', toppers: ['Topper Name 5', 'Topper Name 6'] },
     ]
 };
 ---
@@ -55,19 +75,14 @@ const yearData_2024_2025 = {
     </div>
 
     <main class="archive-content">
-        <!-- Year 2023-2024 Content -->
         <div class="year-content-wrapper is-active" id="year-2023-2024">
             <Year2023_2024 data={yearData_2023_2024} />
         </div>
-        <!-- Year 2024-2025 Content -->
         <div class="year-content-wrapper" id="year-2024-2025">
             <Year2024_2025 data={yearData_2024_2025} />
         </div>
-        <!-- Year 2025-2026 Content (Placeholder) -->
         <div class="year-content-wrapper" id="year-2025-2026">
-             <div class="placeholder-container">
-                <p>Data for the 2025-2026 academic year will be announced soon.</p>
-            </div>
+            <Year2025_2026 data={yearData_2025_2026} />
         </div>
     </main>
 </Layout>
@@ -82,7 +97,6 @@ const yearData_2024_2025 = {
     .year-tab.active { background-color: var(--primary-color); color: #fff; border-color: var(--primary-color); }
     .year-content-wrapper { display: none; }
     .year-content-wrapper.is-active { display: block; }
-    .placeholder-container { padding: 4rem 1.5rem; text-align: center; color: var(--text-secondary); }
 </style>
 
 <script>
