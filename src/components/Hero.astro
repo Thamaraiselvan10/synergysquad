@@ -1,217 +1,105 @@
 ---
 // src/components/Hero.astro
+// The carousel data is no longer needed.
 ---
+
 <section class="hero">
-  <div class="hero-slideshow">
-    <div
-      class="slide current-slide"
-      id="banner-slide" 
-      style="background-image: url('images/Banner.jpg');"
-    ></div>
-    
-    {/* --- ID ADDED HERE --- */}
-    <div
-      class="slide"
-      id="banner-slide" 
-      style="background-image: url('images/Banner.jpg');"
-    ></div>
-
-    <div
-      class="slide"
-      id="banner-slide" 
-      style="background-image: url('images/Banner.jpg');"
-    ></div>
-  </div>
-
-  <div class="hero-overlay"></div>
-
-  <!-- Navigation Buttons -->
-  <button id="prev-slide" class="slide-nav-button prev-button" aria-label="Previous Slide">
-    &#10094;
-  </button>
-  <button id="next-slide" class="slide-nav-button next-button" aria-label="Next Slide">
-    &#10095;
-  </button>
-
-  <!-- Dot Indicators -->
-  <div class="slide-dots">
-    <span class="dot active"></span>
-    <span class="dot"></span>
-    <span class="dot"></span>
-  </div>
+    <div class="video-background">
+        <video autoplay loop muted playsinline >
+            <!-- 
+                IMPORTANT: Place your video in the `public/videos/` folder.
+                If the folder doesn't exist, create it.
+            -->
+            <source src="/videos/ss-video.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+   
+   
 </section>
 
 <style>
-  .hero {
-    position: relative;
-    overflow: hidden;
-    min-height: 80vh;
-  }
-
-  .hero-slideshow {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 0;
-  }
-
-  .slide {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-size: cover;
-    background-position: center;
-    opacity: 0;
-    /* transition: opacity 1.5s ease-in-out; */
-  }
-
-  #banner-slide {
-    background-position: top center;
-  }
-
-  .slide.current-slide {
-    opacity: 1;
-  }
-
-
-  /* --- Elegant, Minimal Slide Buttons --- */
-  .slide-nav-button {
-    position: absolute;
-    top: 55%;
-    transform: translateY(-50%);
-    background-color: rgba(255, 255, 255, 0.08);
-    color: rgba(255, 255, 255, 0.6);
-    border: none;
-    border-radius: 50%;
-    font-size: 1.2rem;
-    padding: 0.4rem 0.6rem;
-    cursor: pointer;
-    opacity: 0.6;
-    transition: all 0.3s ease;
-    backdrop-filter: blur(5px);
-    z-index: 3;
-  }
-
-  .slide-nav-button:hover {
-    background-color: rgba(255, 255, 255, 0.25);
-    color: #fff;
-    opacity: 1;
-    transform: translateY(-50%) scale(1.05);
-  }
-
-  .slide-nav-button.prev-button {
-    left: 0.8rem;
-  }
-
-  .slide-nav-button.next-button {
-    right: 0.8rem;
-  }
-
-  /* --- Dot Indicators --- */
-  .slide-dots {
-    position: absolute;
-    bottom: 1.2rem;
-    width: 100%;
-    text-align: center;
-    z-index: 3;
-  }
-
-  .dot {
-    cursor: pointer;
-    height: 8px;
-    width: 8px;
-    margin: 0 0.4rem;
-    background-color: rgba(255, 255, 255, 0.4);
-    border-radius: 50%;
-    display: inline-block;
-    transition: background-color 0.4s ease;
-  }
-
-  .dot.active,
-  .dot:hover {
-    background-color: #fff;
-  }
-
-  @media (max-width: 768px) {
     .hero {
-      min-height: 50vh;
+        position: relative;
+        height: 100vh; /* Adjust height as needed */
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden; /* Critical for containing the video */
+        text-align: center;
+        color: var(--text-primary-inverted, #ffffff); /* Use inverted text color, fallback to white */
     }
 
-    .slide-nav-button {
-      font-size: 1rem;
-      padding: 0.3rem 0.5rem;
+    .video-background {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 1;
     }
 
-    .dot {
-      height: 6px;
-      width: 6px;
-      margin: 0 0.3rem;
+    .video-background video {
+        width: 100%;
+        height: 100%;
+        object-fit: cover; /* Ensures video covers the area without distortion */
     }
-  }
+
+   
+
+    .hero-content {
+        position: relative;
+        z-index: 3;
+        max-width: 900px;
+        padding: 0 1.5rem;
+    }
+
+    .hero-title {
+        font-size: 4.5rem; /* Maintained original size */
+        font-weight: 900;
+        line-height: 1.1;
+        margin-bottom: 1.5rem;
+        text-shadow: 0 4px 15px var(--primary-color-glow, rgba(79, 70, 229, 0.4)); /* Maintained original shadow */
+    }
+
+    .hero-subtitle {
+        font-size: 1.25rem; /* Maintained original size */
+        max-width: 65ch;
+        margin: 0 auto;
+        line-height: 1.7;
+        opacity: 0.9;
+    }
+
+    /* Animations (Kept from your original file) */
+    .fade-in-down {
+        opacity: 0;
+        animation: fadeInDown 0.8s 0.2s ease-out forwards;
+    }
+    .fade-in-up {
+        opacity: 0;
+        animation: fadeInUp 0.8s 0.4s ease-out forwards;
+    }
+
+    @keyframes fadeInDown {
+        to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeInUp {
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Responsive Adjustments (Kept from your original file) */
+    @media (max-width: 768px) {
+        .hero {
+            height: 75vh;
+        }
+        .hero-title {
+            font-size: 2.75rem;
+        }
+        .hero-subtitle {
+            font-size: 1.1rem;
+        }
+    }
 </style>
 
-<script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const slides = document.querySelectorAll('.slide');
-    const dots = document.querySelectorAll('.dot');
-    const prevButton = document.getElementById('prev-slide');
-    const nextButton = document.getElementById('next-slide');
-
-    let currentSlideIndex = 0;
-    const slideIntervalTime = 4000;
-    let slideInterval;
-
-    function showSlide(index) {
-      if (index >= slides.length) index = 0;
-      else if (index < 0) index = slides.length - 1;
-
-      slides.forEach((slide) => slide.classList.remove('current-slide'));
-      dots.forEach((dot) => dot.classList.remove('active'));
-
-      slides[index].classList.add('current-slide');
-      dots[index].classList.add('active');
-      currentSlideIndex = index;
-    }
-
-    function nextSlide() {
-      showSlide(currentSlideIndex + 1);
-    }
-
-    function prevSlide() {
-      showSlide(currentSlideIndex - 1);
-    }
-
-    nextButton.addEventListener('click', () => {
-      nextSlide();
-      resetInterval();
-    });
-
-    prevButton.addEventListener('click', () => {
-      prevSlide();
-      resetInterval();
-    });
-
-    dots.forEach((dot, index) => {
-      dot.addEventListener('click', () => {
-        showSlide(index);
-        resetInterval();
-      });
-    });
-
-    function startAutoSlide() {
-      slideInterval = setInterval(nextSlide, slideIntervalTime);
-    }
-
-    function resetInterval() {
-      clearInterval(slideInterval);
-      startAutoSlide();
-    }
-
-    showSlide(currentSlideIndex);
-    startAutoSlide();
-  });
-</script>
+<!-- The script tag is no longer needed for a video background and has been removed -->

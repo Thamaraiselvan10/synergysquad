@@ -32,6 +32,7 @@ const navLinks = [
 </header>
 
 <div id="mobile-nav-overlay" class="mobile-nav-overlay">
+    <button id="close-menu-btn" class="close-menu-btn" aria-label="Close Menu">&times;</button>
     <nav>
         {navLinks.map(link => (
             <a href={link.href} class:list={{ active: pathname.startsWith(link.href) }}>
