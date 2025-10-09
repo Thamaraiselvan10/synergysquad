@@ -47,6 +47,7 @@ const challenges = [
     </div>
 </section>
 <style>
+    /* Base Styles */
     .upcoming-challenges { padding: 6rem 1.5rem; overflow: hidden; }
     .container { max-width: 1200px; margin: auto; }
     .section-title { font-size: 2.5rem; font-weight: 800; text-align: center; margin-bottom: 3rem; color: var(--primary-color); animation: pulse-glow 2.5s infinite ease-in-out; }
@@ -59,21 +60,67 @@ const challenges = [
     .card-content { padding: 1.5rem; }
     .card-content h3 { margin-top: 0; font-size: 1.25rem; font-weight: 700; }
     .card-content p { color: var(--text-secondary); line-height: 1.6; margin-bottom: 0; }
+
+    /* Status Tags Styling */
     .status-tag { display: flex; align-items: center; gap: 0.5rem; }
     .status-dot { width: 10px; height: 10px; border-radius: 50%; }
     .status-text { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; }
-    .status-tag.current .status-dot { background-color: #10b981; box-shadow: 0 0 8px #10b981; animation: glow-animation 2s infinite ease-in-out; }
-    .status-tag.current .status-text { color: #059669; }
     .status-tag.upcoming .status-dot { background-color: #f59e0b; box-shadow: 0 0 8px #f59e0b; animation: glow-animation 2s infinite ease-in-out; }
     .status-tag.upcoming .status-text { color: #b45309; }
     .status-tag.completed .status-dot { background-color: #9ca3af; }
     .status-tag.completed .status-text { color: #6b7280; }
     @keyframes glow-animation {  0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
-    @media (min-width: 641px) { .challenge-card { display: flex; } .poster-container { flex: 0 0 220px; } .card-content { display: flex; flex-direction: column; justify-content: space-between; } .mobile-tag { display: none; } .desktop-tag { margin-top: 1rem; } }
-    @media (max-width: 640px) { .challenge-card { display: block; } .challenge-poster { aspect-ratio: 4 / 5; } .desktop-tag { display: none; } .mobile-tag { position: absolute; top: 1rem; right: 1rem; background-color: rgba(255, 255, 255, 0.8); backdrop-filter: blur(5px); padding: 0.35rem 0.75rem; border-radius: 9999px; border: 1px solid rgba(0,0,0,0.05); } }
+
+    /* --- DESKTOP-SPECIFIC STYLES --- */
+    .challenge-card { display: flex; } 
+    .poster-container { flex: 0 0 220px; } 
+    .card-content { display: flex; flex-direction: column; justify-content: space-between; } 
+    .mobile-tag { display: none; } 
+    .desktop-tag { margin-top: 1rem; }
+
+    /* --- THIS IS THE UPDATED MOBILE VIEW --- */
+    @media (max-width: 768px) {
+        .upcoming-challenges {
+            padding: 4rem 1.5rem; /* Reduced padding */
+        }
+        .section-title {
+            font-size: 2rem; /* Smaller title */
+        }
+        .challenge-card {
+            display: block; /* Stack image and content */
+        }
+        .poster-container {
+            flex: none; /* Reset flex properties */
+        }
+        .challenge-poster {
+            aspect-ratio: 4 / 5; /* Consistent image ratio */
+        }
+        .card-content {
+            padding: 1.25rem; /* Tighter padding */
+        }
+        .desktop-tag {
+            display: none; /* Hide desktop tag */
+        }
+        .mobile-tag {
+            /* Show and style mobile tag as an overlay */
+            display: flex;
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background-color: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(5px);
+            padding: 0.35rem 0.75rem;
+            border-radius: 9999px;
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+    }
+
+    /* Splide UI Customization */
     .splide__arrow { background-color: var(--primary-color); }
     .splide__arrow svg { fill: white; }
     .splide__pagination__page.is-active { background-color: var(--primary-color); }
+
+    /* Animation Helpers */
     .fade-in-up { opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease-out, transform 0.6s ease-out; }
     .fade-in-up.is-visible { opacity: 1; transform: translateY(0); }
 </style>

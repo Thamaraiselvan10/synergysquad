@@ -91,7 +91,6 @@ import Layout from '../layouts/Layout.astro';
         margin-top: -80px;
     }
     .vision-mission-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
-    @media (max-width: 768px) { .vision-mission-grid { grid-template-columns: 1fr; } }
 
     .content-block {
         background-color: #ffffff; padding: 2.5rem; border-radius: 16px;
@@ -139,6 +138,34 @@ import Layout from '../layouts/Layout.astro';
 
     .fade-in-up { opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease-out, transform 0.6s ease-out; }
     .fade-in-up.is-visible { opacity: 1; transform: translateY(0); }
+
+    /* --- THIS IS THE UPDATE FOR MOBILE VIEW --- */
+    @media (max-width: 768px) {
+        .vision-mission-grid { 
+            grid-template-columns: 1fr; 
+        }
+        .page-header {
+            padding: 4rem 1.5rem; /* Reduced padding */
+        }
+        .page-title {
+            font-size: 2.5rem; /* Smaller title */
+        }
+        .page-subtitle {
+            font-size: 1.1rem; /* Smaller subtitle */
+        }
+        .content-container {
+            margin-top: -60px; /* Adjusted negative margin */
+        }
+        .content-block {
+            padding: 2rem; /* Less padding on cards */
+        }
+        .genesis-section {
+            padding: 4rem 1.5rem; /* Reduced padding */
+        }
+        .section-title {
+            font-size: 2rem; /* Smaller section title */
+        }
+    }
 </style>
 
 <script>

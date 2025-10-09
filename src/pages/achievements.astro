@@ -58,7 +58,6 @@ const yearData_2025_2026 = {
         { name: 'Wipro Warriors: NLTH Mock Day', date: '21-09-2025' },
         { name: 'Pratian Prep Battle Day', date: '28-09-2025' },
     ],
-    // --- THIS IS THE FIX ---
     topperLists: [
           { title: 'WEEK 1: Pattern Play Day!', imageUrl: '/events-image/week-1.jpeg', toppers: ['DHINESHKUMAR M 90/100', 'SUDHAKAR S 80/100', 'Giri N III - CSE - A 70/100', 'Naveen Prasath III - CSE - B 70/100', 'Nishanth M III - CSE - B 70/100', 'Tharankumar G III - CSE - C 70/100'] },
   { title: 'WEEK 2: Array Mastery Quest Day', imageUrl: '/events-image/week-2.jpeg', toppers: ['Subashree V P III/CSE/C 100/100', 'Dhineshkumar III/CSE/A 97/100', 'Hari Dev M V III/CSE/A 90/100'] },
@@ -106,6 +105,17 @@ const yearData_2025_2026 = {
     .year-tab.active { background-color: var(--primary-color); color: #fff; border-color: var(--primary-color); }
     .year-content-wrapper { display: none; }
     .year-content-wrapper.is-active { display: block; }
+
+    /* --- THIS IS THE UPDATE FOR MOBILE VIEW --- */
+    @media (max-width: 768px) {
+        .archive-header h1 {
+            font-size: 2.5rem;
+        }
+        .year-tabs {
+            flex-direction: column;
+            align-items: stretch;
+        }
+    }
 </style>
 
 <script>

@@ -1,16 +1,14 @@
 ---
 // src/components/Achievements.astro
 
-// This list now has the correct file extensions from your screenshot.
 const companyLogos = [
-    'ami-logo.svg',             // Corrected from .png to .svg
-    'mr-cooper-logo.webp',        // Corrected from .png to .webp
+    'ami-logo.svg',
+    'mr-cooper-logo.webp',
     'tech-mahindra-logo.png',
     'mindtree-logo.png',
     'tcs-logo.png'
 ];
 ---
-<!-- sabari og back -->
 <section class="achievements">
     <div class="container">
         <h2 class="section-title fade-in-up">Proven Placement Success</h2>
@@ -65,6 +63,28 @@ const companyLogos = [
     }
     .highlight-stat.fade-in-up { transition-delay: 0.2s; }
     .logo-cloud.fade-in-up { transition-delay: 0.4s; }
+
+    /* --- THIS IS THE UPDATE FOR MOBILE VIEW --- */
+    @media (max-width: 768px) {
+        .achievements {
+            padding: 4rem 1.5rem; /* Reduce vertical padding */
+        }
+        .section-title {
+            font-size: 2rem; /* Smaller section title */
+        }
+        .stat-number {
+            font-size: 4.5rem; /* Make the large number smaller */
+        }
+        .stat-description {
+            font-size: 1rem; /* Slightly smaller description text */
+        }
+        .logo-grid {
+            gap: 2rem 2.5rem; /* Reduce the gap between logos */
+        }
+        .company-logo {
+            height: 35px; /* Make logos slightly smaller */
+        }
+    }
 </style>
 
 <script>
