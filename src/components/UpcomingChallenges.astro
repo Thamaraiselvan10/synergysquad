@@ -1,14 +1,13 @@
 ---
 // src/components/UpcomingChallenges.astro
 const challenges = [
-    { title: 'National level coding competition', description: ' A national innovation marathon where sharp minds unite to solve real-world challenges...', posterUrl: '/upcoming/codeathon.jpeg', status: 'current' },
+    { title: 'National level coding competition', description: ' A national innovation marathon where sharp minds unite to solve real-world challenges...', posterUrl: '/upcoming/codeathon.jpeg', status: 'completed' },
     { title: 'CODE-A-THAN Final round', description: 'The ultimate 8-hour coding challenge. Compete for the national title...', posterUrl: '/upcoming/codeathon.jpeg', status: 'upcoming' },
-    { title: 'Mock Wipro NLTH Challenge', description: 'Test your skills in a simulated environment that mirrors the actual Wipro NLTH.', posterUrl: '/events-image/week-7.jpeg', status: 'upcoming' },
-    { title: 'Week 1 - Pattern Day', description: 'The foundational challenge that kicked off our weekly series.', posterUrl: '/events-image/week-1.jpeg', status: 'completed' }
+    { title: 'No More Upcoming Challenges', description: 'Stay tuned for future announcements and get ready for the next wave of exciting events!', posterUrl: 'https://images.unsplash.com/photo-1550745165-9bc0b252726a?q=80&w=2070', status: 'placeholder' },
+    { title: 'No More Upcoming Challenges', description: 'Stay tuned for future announcements and get ready for the next wave of exciting events!', posterUrl: 'https://images.unsplash.com/photo-1579546929518-9e396f3cc809?q=80&w=2070', status: 'placeholder' }
 ];
 ---
 <link rel="stylesheet" href="node_modules/@splidejs/splide/dist/css/splide.min.css">
-
 <section class="upcoming-challenges fade-in-up">
     <div class="container">
         <h2 class="section-title">Challenges Updates</h2>
@@ -19,23 +18,25 @@ const challenges = [
                         <li class="splide__slide">
                             <div class="challenge-card">
                                 <div class="poster-container">
-                                    <img src={challenge.posterUrl} alt={`Poster for ${challenge.title}`} class="challenge-poster" />
-                                    {/* Tag for Mobile */}
-                                    <div class:list={['status-tag', 'mobile-tag', challenge.status]}>
-                                        <span class="status-dot"></span>
-                                        <span class="status-text">{challenge.status.toUpperCase()}</span>
-                                    </div>
+                                    <img src={challenge.posterUrl} alt={challenge.title} class="challenge-poster" />
+                                    {challenge.status !== 'placeholder' && (
+                                        <div class:list={['status-tag', 'mobile-tag', challenge.status]}>
+                                            <span class="status-dot"></span>
+                                            <span class="status-text">{challenge.status.toUpperCase()}</span>
+                                        </div>
+                                    )}
                                 </div>
                                 <div class="card-content">
                                     <div class="card-text">
                                         <h3>{challenge.title}</h3>
                                         <p>{challenge.description}</p>
                                     </div>
-                                    {/* Tag for Desktop */}
-                                    <div class:list={['status-tag', 'desktop-tag', challenge.status]}>
-                                        <span class="status-dot"></span>
-                                        <span class="status-text">{challenge.status.toUpperCase()}</span>
-                                    </div>
+                                    {challenge.status !== 'placeholder' && (
+                                        <div class:list={['status-tag', 'desktop-tag', challenge.status]}>
+                                            <span class="status-dot"></span>
+                                            <span class="status-text">{challenge.status.toUpperCase()}</span>
+                                        </div>
+                                    )}
                                 </div>
                             </div>
                         </li>
@@ -45,30 +46,11 @@ const challenges = [
         </div>
     </div>
 </section>
-
 <style>
-    .upcoming-challenges { padding: 4rem 1.5rem; overflow: hidden; }
+    .upcoming-challenges { padding: 6rem 1.5rem; overflow: hidden; }
     .container { max-width: 1200px; margin: auto; }
-    
-    /* --- START: UPDATED TITLE STYLE WITH GLOW ANIMATION --- */
-    .section-title {
-        font-size: 2.5rem;
-        font-weight: 800;
-        text-align: center;
-        margin-bottom: 3rem;
-        color: var(--primary-color);
-        animation: pulse-glow 2.5s infinite ease-in-out;
-    }
-    @keyframes pulse-glow {
-        0%, 100% {
-            text-shadow: 0 0 10px rgba(30, 64, 175, 0.5), 0 0 20px rgba(30, 64, 175, 0.3);
-        }
-        50% {
-            text-shadow: 0 0 20px rgba(30, 64, 175, 0.8), 0 0 40px rgba(30, 64, 175, 0.5);
-        }
-    }
-    /* --- END: UPDATED TITLE STYLE --- */
-
+    .section-title { font-size: 2.5rem; font-weight: 800; text-align: center; margin-bottom: 3rem; color: var(--primary-color); animation: pulse-glow 2.5s infinite ease-in-out; }
+    @keyframes pulse-glow { 0%, 100% { text-shadow: 0 0 10px rgba(30, 64, 175, 0.5), 0 0 20px rgba(30, 64, 175, 0.3); } 50% { text-shadow: 0 0 20px rgba(30, 64, 175, 0.8), 0 0 40px rgba(30, 64, 175, 0.5); } }
     .splide__slide { padding: 0.5rem; }
     .challenge-card { background-color: #fff; border-radius: 12px; border: 1px solid var(--border-color); box-shadow: 0 4px 12px rgba(0,0,0,0.05); overflow: hidden; height: 100%; transition: transform 0.3s ease, box-shadow 0.3s ease; }
     .challenge-card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.07); }
@@ -77,8 +59,6 @@ const challenges = [
     .card-content { padding: 1.5rem; }
     .card-content h3 { margin-top: 0; font-size: 1.25rem; font-weight: 700; }
     .card-content p { color: var(--text-secondary); line-height: 1.6; margin-bottom: 0; }
-
-    /* Status Tag Styles */
     .status-tag { display: flex; align-items: center; gap: 0.5rem; }
     .status-dot { width: 10px; height: 10px; border-radius: 50%; }
     .status-text { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; }
@@ -88,31 +68,9 @@ const challenges = [
     .status-tag.upcoming .status-text { color: #b45309; }
     .status-tag.completed .status-dot { background-color: #9ca3af; }
     .status-tag.completed .status-text { color: #6b7280; }
-    @keyframes glow-animation { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
-
-    /* Responsive Layout */
-    @media (min-width: 641px) {
-        .challenge-card { display: flex; }
-        .poster-container { flex: 0 0 220px; }
-        .card-content { display: flex; flex-direction: column; justify-content: space-between; }
-        .mobile-tag { display: none; }
-        .desktop-tag { margin-top: 1rem; }
-    }
-    @media (max-width: 640px) {
-        .challenge-card { display: block; }
-        .challenge-poster { aspect-ratio: 4 / 5; }
-        .desktop-tag { display: none; }
-        .mobile-tag {
-            position: absolute; top: 1rem; right: 1rem;
-            background-color: rgba(255, 255, 255, 0.8);
-            backdrop-filter: blur(5px);
-            padding: 0.35rem 0.75rem;
-            border-radius: 9999px;
-            border: 1px solid rgba(0,0,0,0.05);
-        }
-    }
-
-    /* Unchanged styles */
+    @keyframes glow-animation {  0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+    @media (min-width: 641px) { .challenge-card { display: flex; } .poster-container { flex: 0 0 220px; } .card-content { display: flex; flex-direction: column; justify-content: space-between; } .mobile-tag { display: none; } .desktop-tag { margin-top: 1rem; } }
+    @media (max-width: 640px) { .challenge-card { display: block; } .challenge-poster { aspect-ratio: 4 / 5; } .desktop-tag { display: none; } .mobile-tag { position: absolute; top: 1rem; right: 1rem; background-color: rgba(255, 255, 255, 0.8); backdrop-filter: blur(5px); padding: 0.35rem 0.75rem; border-radius: 9999px; border: 1px solid rgba(0,0,0,0.05); } }
     .splide__arrow { background-color: var(--primary-color); }
     .splide__arrow svg { fill: white; }
     .splide__pagination__page.is-active { background-color: var(--primary-color); }
