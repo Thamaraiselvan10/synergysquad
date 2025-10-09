@@ -56,13 +56,13 @@ const leaderboardData = [
 </section>
 
 <style>
+    /* Base Styles */
     .leaderboard-section {
         padding: 6rem 1.5rem;
         background-color: var(--background-color);
     }
     .container { max-width: 800px; margin: auto; }
     
-    /* --- START: RESTORED HEADER STYLES --- */
     .section-header { text-align: center; margin-bottom: 4rem; }
     .section-title {
         font-size: 2.75rem;
@@ -72,50 +72,46 @@ const leaderboardData = [
         display: inline-block;
     }
     .section-title::after {
-        content: '';
-        position: absolute;
-        bottom: -0.75rem;
-        left: 50%;
-        transform: translateX(-50%);
-        height: 5px;
-        width: 0;
+        content: ''; position: absolute; bottom: -0.75rem; left: 50%;
+        transform: translateX(-50%); height: 5px; width: 0;
         background: linear-gradient(90deg, var(--primary-color), #6366f1);
-        border-radius: 5px;
-        animation: grow-underline 1s ease-out forwards;
+        border-radius: 5px; animation: grow-underline 1s ease-out forwards;
         animation-delay: 0.5s;
     }
-    @keyframes grow-underline {
-        to { width: 100px; }
-    }
+    @keyframes grow-underline { to { width: 100px; } }
     .section-subtitle {
-        max-width: 65ch;
-        margin: auto;
-        font-size: 1.125rem;
-        color: var(--text-secondary);
-        line-height: 1.8;
+        max-width: 65ch; margin: auto; font-size: 1.125rem;
+        color: var(--text-secondary); line-height: 1.8;
     }
-    /* --- END: RESTORED HEADER STYLES --- */
     
+    /* --- MOBILE-FIRST STYLES (Default) --- */
+    .leaderboard-header { display: none; } /* Hide desktop header */
     .leaderboard-container {
-        background-color: #fff;
-        border-radius: 12px;
-        border: 1px solid var(--border-color);
-        box-shadow: 0 10px 25px -5px rgb(0 0 0 / 0.05);
-        overflow: hidden;
+        /* On mobile, the container is just for spacing */
+        background-color: transparent;
+        border: none;
+        box-shadow: none;
     }
-
-    /* All responsive table styles are unchanged and correct */
-    .leaderboard-header { display: none; }
     .leaderboard-row {
+        /* Each row is a distinct card */
         display: grid;
         grid-template-columns: 1fr 1fr;
         gap: 0.5rem 1rem;
         padding: 1.25rem 1.5rem;
-        border-top: 1px solid var(--border-color);
+        margin-bottom: 1rem;
+        background-color: #fff;
+        border: 1px solid var(--border-color);
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.05);
         transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
-    .leaderboard-row:first-child { border-top: none; }
-    .leaderboard-row:hover { transform: scale(1.02); box-shadow: 0 10px 20px rgba(0,0,0,0.07); z-index: 10; position: relative; }
+    .leaderboard-row:hover { 
+        transform: scale(1.02); 
+        box-shadow: 0 10px 20px rgba(0,0,0,0.07); 
+        z-index: 10; 
+        position: relative; 
+    }
+    
     .row-item.rank { grid-column: 1 / 2; display: flex; align-items: center; gap: 0.5rem; font-weight: 700; color: var(--text-primary); }
     .rank-label { display: none; }
     .rank-value { font-size: 1.125rem; }
@@ -124,20 +120,64 @@ const leaderboardData = [
     .leaderboard-row.top-three .rank-value, .leaderboard-row.top-three .name { font-weight: 700; color: var(--primary-color); }
     .leaderboard-row.top-three .rank-value { font-size: 1.25rem; }
 
+    /* --- THIS IS THE UPDATE FOR MOBILE VIEW --- */
+    @media (max-width: 639px) {
+        .leaderboard-section {
+            padding: 4rem 1.5rem; /* Reduced padding */
+        }
+        .section-title {
+            font-size: 2.25rem; /* Smaller title */
+        }
+        .section-subtitle {
+            font-size: 1rem; /* Smaller subtitle */
+        }
+    }
+
+    /* --- DESKTOP STYLES (min-width: 640px) --- */
     @media (min-width: 640px) {
-        .leaderboard-header { display: grid; grid-template-columns: 100px 1fr 150px; gap: 1rem; padding: 1rem 1.5rem; background-color: #f8fafc; font-weight: 600; color: var(--text-secondary); font-size: 0.875rem; text-transform: uppercase; }
-        .leaderboard-row { grid-template-columns: 100px 1fr 150px; padding: 1rem 1.5rem; }
+        .leaderboard-container {
+            /* On desktop, the container becomes the bordered box again */
+            background-color: #fff;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 10px 25px -5px rgb(0 0 0 / 0.05);
+            overflow: hidden;
+        }
+        .leaderboard-header { 
+            display: grid; 
+            grid-template-columns: 100px 1fr 150px; 
+            gap: 1rem; padding: 1rem 1.5rem; 
+            background-color: #f8fafc; font-weight: 600; 
+            color: var(--text-secondary); font-size: 0.875rem; 
+            text-transform: uppercase; 
+        }
+        .leaderboard-row {
+            /* Revert card styles for a traditional table look */
+            grid-template-columns: 100px 1fr 150px;
+            padding: 1rem 1.5rem;
+            margin-bottom: 0;
+            border: none;
+            border-top: 1px solid var(--border-color);
+            border-radius: 0;
+            box-shadow: none;
+        }
+        .leaderboard-row:first-child { border-top: none; }
+        .leaderboard-row:hover {
+            transform: none;
+            box-shadow: none;
+            background-color: #f8fafc;
+        }
         .row-item.name { grid-column: auto; grid-row: auto; }
         .row-item.score { grid-column: auto; grid-row: auto; }
     }
 
+    /* Animation Styles */
     .fade-in-up { opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease-out, transform 0.6s ease-out; }
     .fade-in-up.is-visible { opacity: 1; transform: translateY(0); }
     .leaderboard-container.fade-in-up { transition-delay: 0.2s; }
 </style>
 
 <script>
-    // The script is correct and unchanged
     document.addEventListener('DOMContentLoaded', () => {
         const elements = document.querySelectorAll('.fade-in-up');
         const observer = new IntersectionObserver((entries) => {
